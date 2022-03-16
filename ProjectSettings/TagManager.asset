@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Machine
+  - Soldier
+  - Obstacle
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Protection
     uniqueID: 3717479271
+    locked: 0
+  - name: Character
+    uniqueID: 656211611
     locked: 0
   - name: Gun
     uniqueID: 441887057
