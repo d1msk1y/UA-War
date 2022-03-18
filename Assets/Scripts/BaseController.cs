@@ -7,6 +7,13 @@ public class BaseController : MonoBehaviour
     public Actor character;
     public LayerMask targetMask;
 
+    public static BaseController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         character.gun.targetMask = targetMask;        

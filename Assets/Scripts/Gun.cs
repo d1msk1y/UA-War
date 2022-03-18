@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     public GameObject handler;
     public LayerMask targetMask;
     private LineRenderer _lineRenderer;
+    public RaycastHit2D gunRaycast;
 
     private bool _itCanShoot = true;
 
@@ -25,10 +26,18 @@ public class Gun : MonoBehaviour
     {
         if (!_itCanShoot)
             return;
-        onShootEvent.Invoke();
-        Shooting(aimPos);        
-        StartCoroutine(ShotFX(aimPos));
+
+        gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 10, targetMask);
+        Vector2 hitPos = Vector2.zero;
+        if (gunRaycast.collider == null)
+            hitPos = firePos.position + (aimPos - transform.position) * 10;
+        else
+            hitPos = gunRaycast.collider.transform.position;
+
+        Shooting(gunRaycast);        
+        StartCoroutine(ShotFX(hitPos));
         StartCoroutine(StartTimer());
+        onShootEvent?.Invoke();
     }
 
     private IEnumerator StartTimer()
@@ -44,9 +53,8 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void Shooting(Vector3 aimPos)
+    private void Shooting(RaycastHit2D raycastHit)
     {
-        RaycastHit2D raycastHit = Physics2D.Raycast(firePos.position, aimPos - transform.position, 10, targetMask);
         if (raycastHit.collider != null)
             GiveDamage(raycastHit.collider.gameObject, raycastHit);
     }

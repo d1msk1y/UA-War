@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntityHealth : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
     public bool isAlive = true;
+
+    [SerializeField] private UnityEvent onDie;
 
     private void Start()
     {
@@ -24,6 +27,7 @@ public class EntityHealth : MonoBehaviour
         if (_health < 0)
         {
             Destroy(gameObject);
+            onDie?.Invoke();
             return false;           
         }
         else
