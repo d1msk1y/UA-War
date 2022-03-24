@@ -18,7 +18,7 @@ public class Soldier : Actor
 
     private void Start()
     {
-        gun.onShootEvent += GetRaycastHit;
+        gun.OnShootEvent += GetRaycastHit;
 
         gun.targetMask = targetMask;
         destinationTarget = BaseController.instance.transform;

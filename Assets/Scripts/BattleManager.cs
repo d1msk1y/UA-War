@@ -4,15 +4,65 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    [Header("Rounds")]
+    [SerializeField] private int _currentRound;
+    [SerializeField] private int _roundTime;
+    [SerializeField] private int _restTime;
+    [SerializeField] private bool _isRest;
 
     [Header("Spawn")]
-    public GameObject[] enemiesToSpawn;
-    public Transform[] spawners;
+    [SerializeField] private GameObject[] enemiesToSpawn;
+    [SerializeField] private Transform[] spawners;
     [SerializeField] private float spawnRatio;
+    private float _spawnerTimer;
 
-    private float timer;
+    private delegate void BattleHandler();
 
-    private void ResetTimer() => timer = 0;
+    private void Start()
+    {
+        StartRound();
+    }
+
+    private void Update()
+    {
+        if (ReadyToSpawn())
+            SpawnEnemy(RandomEnemy());
+    }
+
+    #region  Rounds
+
+    public void StartRound()
+    {
+        _isRest = false;
+        BattleHandler onRoundEnd = StopRound;
+        StartCoroutine(StartTimer(_roundTime, onRoundEnd));
+    }
+
+    private void StopRound()
+    {
+        _currentRound++;
+        _isRest = true;
+        BattleHandler onRoundStart = StartRound;
+        StartCoroutine(StartTimer(_restTime, onRoundStart));
+    }
+
+    private IEnumerator StartTimer(float time, BattleHandler function)
+    {
+        float timer = 0;
+        while (timer < time)
+        {
+            timer += 1 * Time.deltaTime;
+            if (timer >= time)
+            {
+                function();
+            }
+            yield return null;
+        }
+    }
+
+    #endregion
+
+    #region Spawn
 
     private GameObject RandomEnemy()
     {
@@ -20,16 +70,10 @@ public class BattleManager : MonoBehaviour
         return selectedEnemy;
     }
 
-    private void Update()
-    {
-        if(ReadyToSpawn())
-            SpawnEnemy(RandomEnemy());
-    }
-
     private bool ReadyToSpawn()
     {
-        timer += 1 * Time.deltaTime;
-        if (timer >= spawnRatio)
+        _spawnerTimer += 1 * Time.deltaTime;
+        if (_spawnerTimer >= spawnRatio && !_isRest)
         {
             return true;
         }
@@ -39,8 +83,10 @@ public class BattleManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject toSpawn)
     {
-        Instantiate(toSpawn, spawners[Random.Range(0, spawners.Length)].position, Quaternion.identity);
-        ResetTimer();
+        Instantiate(toSpawn,
+        spawners[Random.Range(0, spawners.Length)].position, Quaternion.identity);
+        _spawnerTimer = 0;
     }
 
+    #endregion
 }

@@ -125,3 +125,7 @@ MonoBehaviour:
   _health: 0
   _maxHealth: 100
   isAlive: 1
+  hitParticle: {fileID: 4997856801387539281, guid: 4bd8b02414deae7468371555afaee9b4, type: 3}
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []

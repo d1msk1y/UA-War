@@ -37,7 +37,7 @@ public class BaseController : MonoBehaviour
     private void Aiming()
     {
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 aimDir = aimPos - character.gun.handler.transform.position;
+        Vector3 aimDir = aimPos - character.transform.position;
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90;
         //float delayAngle = BodyAiming(angle);

@@ -5,11 +5,18 @@ using UnityEngine.Events;
 
 public class EntityHealth : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
     public bool isAlive = true;
 
+    [Header("Health")]
+    public ParticleSystem hitParticle;
+
     [SerializeField] private UnityEvent onDie;
+
+    public delegate void OnDamage();
+    public event OnDamage onDamageEvent;
 
     private void Start()
     {
@@ -19,6 +26,7 @@ public class EntityHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
+        onDamageEvent?.Invoke();
         isAlive = IsEntityAlive();
     }
 
@@ -28,10 +36,9 @@ public class EntityHealth : MonoBehaviour
         {
             Destroy(gameObject);
             onDie?.Invoke();
-            return false;           
+            return false;
         }
         else
             return true;
     }
-
 }

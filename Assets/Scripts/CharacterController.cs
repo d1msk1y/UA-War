@@ -7,12 +7,12 @@ public class CharacterController : Actor
     public BaseController baseController;
     private Rigidbody2D _bodyRB;
 
-    Gun.OnShoot onShoot;
+    Gun.GunHandler onShoot;
 
     private void Start()
     {
         _bodyRB = body.GetComponent<Rigidbody2D>();
-        gun.onShootEvent += PushBody;
+        gun.OnShootEvent += PushBody;
 
         onShoot = PushBody;
     }

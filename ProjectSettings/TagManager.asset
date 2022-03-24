@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - Machine
@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 211367175
+    locked: 0
   - name: Machine
     uniqueID: 371876703
     locked: 0
@@ -55,4 +58,7 @@ TagManager:
     locked: 0
   - name: Gun
     uniqueID: 441887057
+    locked: 0
+  - name: Environment
+    uniqueID: 2196138565
     locked: 0
