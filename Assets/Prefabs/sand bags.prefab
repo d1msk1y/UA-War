@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 11643576533603058}
   - component: {fileID: 477808009152557418}
   - component: {fileID: 1896659556869029035}
+  - component: {fileID: 1922351932858652710}
   - component: {fileID: 7003903647365575855}
   m_Layer: 8
   m_Name: sand bags
@@ -110,6 +111,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.97, y: 0.66}
   m_EdgeRadius: 0
+--- !u!114 &1922351932858652710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719393980617144878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21710590a9b15294696223132cb330cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 100
 --- !u!114 &7003903647365575855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,4 +142,16 @@ MonoBehaviour:
   hitParticle: {fileID: 4997856801387539281, guid: 4bd8b02414deae7468371555afaee9b4, type: 3}
   onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7003903647365575855}
+        m_TargetAssemblyTypeName: EntityHealth, Assembly-CSharp
+        m_MethodName: CreateParticle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 9013976897560874672, guid: 87118f366a2fc8f4f8f03cbc276bcbae, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -13,10 +13,13 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     public ParticleSystem hitParticle;
 
-    [SerializeField] private UnityEvent onDie;
+    public UnityEvent onDie;
 
-    public delegate void OnDamage();
-    public event OnDamage onDamageEvent;
+    public delegate void EntityHandler();
+    public event EntityHandler onDamageEvent;
+    public event EntityHandler onDieEvent;
+
+    public void CreateParticle(ParticleSystem FX) => Instantiate(FX, transform.position, Quaternion.identity);
 
     private void Start()
     {
@@ -34,8 +37,9 @@ public class EntityHealth : MonoBehaviour
     {
         if (_health < 0)
         {
-            Destroy(gameObject);
             onDie?.Invoke();
+            onDieEvent?.Invoke();
+            Destroy(gameObject);
             return false;
         }
         else

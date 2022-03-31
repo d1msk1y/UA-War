@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public AstarPath Astar;
     public BattleManager battleManager;
+    public BuildingSystem buildingSystem;
+    public ScoreSystem scoreSystem;
 
     public static GameManager instance;
 

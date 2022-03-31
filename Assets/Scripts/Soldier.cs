@@ -5,11 +5,15 @@ using Pathfinding;
 
 public class Soldier : Actor
 {
+    [Header("Parameters")]
+    public float radius;
     public LayerMask targetMask;
+
+    [Header("Extra references")]
     public GameObject legs;
     public AIPath aIPath;
-    public float radius;
 
+    [Header("Destinations")]
     public Transform destinationTarget;
     public Transform aimTarget;
 

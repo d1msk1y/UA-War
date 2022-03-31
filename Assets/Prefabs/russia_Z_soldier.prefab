@@ -83,16 +83,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07353b92e1aab54bbe7b1a4b0f790be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 50
+  score: 25
   gun: {fileID: 545955975327267152}
   body: {fileID: 545955976101278977}
   deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
-  deadTime: 30
+  radius: 8.5
   targetMask:
     serializedVersion: 2
     m_Bits: 256
   legs: {fileID: 545955975077651317}
   aIPath: {fileID: 545955974936623775}
-  radius: 8.5
   destinationTarget: {fileID: 0}
   aimTarget: {fileID: 0}
 --- !u!114 &545955974936623774
@@ -121,6 +122,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 545955974936623774}
+        m_TargetAssemblyTypeName: EntityHealth, Assembly-CSharp
+        m_MethodName: CreateParticle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5925271004181312779, guid: 68bc2f498c941244fac147bc88bedb59, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

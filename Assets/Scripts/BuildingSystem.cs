@@ -5,60 +5,62 @@ using UnityEngine.UI;
 
 public class BuildingSystem : MonoBehaviour
 {
-    private GameObject _selectedObject;
-    private Vector3 _objectRotation;
-    // {
-    //     get
-    //     {
-    //         return this._objectRotation;
-    //     }
-    //     set
-    //     {
-    //         this._objectRotation = value;
-    //         _cursor.transform.eulerAngles = this._objectRotation;
-    //     }
-    // }
-
-    private float a
-    {
-        get { return a; }
-        set { a = value; }
-    }
-
+    [Header("GFX")]
+    [SerializeField] private ParticleSystem _buildFX;
     [SerializeField] private SpriteRenderer _cursor;
     private SpriteRenderer _selectedObjectSpriteRenderer;
 
-    private void RotateSelectedItem()
+    public BuildingStuff selectedObject;
+    private ScoreSystem _scoreSystem;
+
+    private Vector3 _objectRotation;
+    private Vector3 ObjectRotation
     {
-        _objectRotation = new Vector3(0, 0, _objectRotation.z + 90);
-        _cursor.transform.eulerAngles = _objectRotation;
+        get
+        {
+            return _objectRotation;
+        }
+        set
+        {
+            _objectRotation = value;
+            _cursor.transform.eulerAngles = _objectRotation;
+        }
     }
 
-    public void SelectItem(GameObject item)
+    private void Start()
     {
-        _objectRotation = Vector3.zero;
-        _selectedObject = item;
-        _selectedObjectSpriteRenderer = _selectedObject.GetComponent<SpriteRenderer>();
+        _scoreSystem = GameManager.instance.scoreSystem;
+    }
+
+    private void RotateSelectedItem() => ObjectRotation = new Vector3(0, 0, _objectRotation.z + 90);
+
+    public void SelectItem(BuildingStuff item)
+    {
+        if (!_scoreSystem.WithdrawCoins(item.price))
+            return;
+
+        selectedObject = item;
+        _selectedObjectSpriteRenderer = selectedObject.GetComponent<SpriteRenderer>();
     }
 
     public void SpawnItem()
     {
-        if (_selectedObject == null)
+        if (selectedObject == null)
             return;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        GameObject item = Instantiate(_selectedObject, mousePos, Quaternion.Euler(_objectRotation));
+        BuildingStuff item = Instantiate(selectedObject, mousePos, Quaternion.Euler(ObjectRotation));
+        Instantiate(_buildFX, item.transform.position, Quaternion.identity);
         GameManager.instance.Astar.Scan();
         _cursor.gameObject.SetActive(false);
 
-        _selectedObject = null;
+        selectedObject = null;
     }
-
 
     private void Update()
     {
-        if (_selectedObject != null)
+        if (selectedObject != null)
         {
             SetCursor();
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -75,6 +77,6 @@ public class BuildingSystem : MonoBehaviour
         _cursor.gameObject.SetActive(true);
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _cursor.transform.position = mousePos;
-        _cursor.transform.localScale = _selectedObject.transform.localScale;
+        _cursor.transform.localScale = selectedObject.transform.localScale;
     }
 }

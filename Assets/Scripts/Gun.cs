@@ -5,13 +5,17 @@ using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Main references & parts")]
     public GunConfig gunConfig;
     public Transform firePos;
-    public LayerMask targetMask;
-    private LineRenderer _lineRenderer;
-    public RaycastHit2D gunRaycast;
     public SpriteRenderer shotFx;
 
+    [Header("Other")]
+    [Tooltip("By this mask gun is detecting object which are should be shoted and what are not")]
+    public LayerMask targetMask;
+    [HideInInspector] public RaycastHit2D gunRaycast;
+
+    private LineRenderer _lineRenderer;
     private bool _itCanShoot = true;
 
     public delegate void GunHandler();
@@ -36,12 +40,12 @@ public class Gun : MonoBehaviour
             hitPos = gunRaycast.point;
 
         OnShootEvent?.Invoke();
-        Shooting(gunRaycast);
+        ShootingRaycast(gunRaycast);
         StartCoroutine(ShotFX(hitPos));
-        StartCoroutine(StartTimer());
+        StartCoroutine(StartShootingTimer());
     }
 
-    private IEnumerator StartTimer()
+    private IEnumerator StartShootingTimer()
     {
         _itCanShoot = false;
         float timer = 0;
@@ -54,7 +58,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void Shooting(RaycastHit2D raycastHit)
+    private void ShootingRaycast(RaycastHit2D raycastHit)
     {
         if (raycastHit.collider != null)
             GiveDamage(raycastHit.collider.gameObject, raycastHit);
@@ -63,14 +67,14 @@ public class Gun : MonoBehaviour
     private void GiveDamage(GameObject damagedEntity, RaycastHit2D raycastHit)
     {
         EntityHealth target = damagedEntity.GetComponent<EntityHealth>();
+        if (target == null)
+            return;
         target.TakeDamage(gunConfig.damage);
         CreateParticle(target.hitParticle);
     }
 
-    private void CreateParticle(ParticleSystem particleSystem)
-    {
-        Instantiate(particleSystem, gunRaycast.point, Quaternion.identity);
-    }
+    private void CreateParticle(ParticleSystem particleSystem) =>
+     Instantiate(particleSystem, gunRaycast.point, Quaternion.identity);
 
     private IEnumerator ShotFX(Vector3 linePos)
     {
@@ -86,5 +90,4 @@ public class Gun : MonoBehaviour
         _lineRenderer.SetPosition(1, firePos.position);
         yield return null;
     }
-
 }

@@ -17,6 +17,10 @@ public class Transport : MonoBehaviour
     [Header("Transport parameters")]
     [SerializeField] internal float _speed;
 
+    [Header("VFX")]
+    public GameObject detonatedBody;
+    public ParticleSystem[] explosionFXs;
+
     internal void SetDestination(Transform target) => aIDestinationSetter.target = target;
 
     internal delegate void TransportHandler();
@@ -28,6 +32,7 @@ public class Transport : MonoBehaviour
         aIPath = GetComponent<AIPath>();
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
         entityHealth = GetComponent<EntityHealth>();
+        entityHealth.onDieEvent += Detonate;
 
         aIPath.maxSpeed = _speed;
     }
@@ -35,7 +40,7 @@ public class Transport : MonoBehaviour
     internal virtual void StartMove()
     {
         if (aIDestinationSetter.target == null)
-            return; Debug.LogWarning("Destination isn't assighned!");
+            return;
 
         OnStartMove?.Invoke();
         aIPath.canMove = true;
@@ -45,5 +50,13 @@ public class Transport : MonoBehaviour
     {
         OnStopMove?.Invoke();
         aIPath.canMove = false;
+    }
+
+    internal virtual void Detonate()
+    {
+        Instantiate(detonatedBody, transform.position, Quaternion.Euler(transform.eulerAngles));
+        entityHealth.CreateParticle(explosionFXs[Random.Range(0, explosionFXs.Length)]);
+        gameObject.SetActive(false);
+        GameManager.instance.ScanAStar();
     }
 }

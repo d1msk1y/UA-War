@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    [Header("References")]
     public Actor character;
     public LayerMask targetMask;
 
@@ -16,7 +17,7 @@ public class BaseController : MonoBehaviour
 
     private void Start()
     {
-        character.gun.targetMask = targetMask;        
+        character.gun.targetMask = targetMask;
     }
 
     private void Update()
@@ -29,6 +30,8 @@ public class BaseController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            if (GameManager.instance.buildingSystem.selectedObject)
+                return;
             Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             character.gun.Shoot(aimPos);
         }
@@ -40,14 +43,13 @@ public class BaseController : MonoBehaviour
         Vector3 aimDir = aimPos - character.transform.position;
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90;
-        //float delayAngle = BodyAiming(angle);
         float delayAngle = Mathf.Lerp(character.body.transform.rotation.z, angle, 2f);
         character.body.transform.rotation = Quaternion.Euler(0, 0, delayAngle);
     }
 
     private float BodyAiming(float angle)
     {
-        float calculatedAngle =  Mathf.Lerp(character.body.transform.rotation.z, angle, 0.1f);
+        float calculatedAngle = Mathf.Lerp(character.body.transform.rotation.z, angle, 0.1f);
         return calculatedAngle;
     }
 
