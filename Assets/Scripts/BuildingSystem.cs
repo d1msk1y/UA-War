@@ -10,7 +10,7 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private SpriteRenderer _cursor;
     private SpriteRenderer _selectedObjectSpriteRenderer;
 
-    public BuildingStuff selectedObject;
+    public BuildingSO selectedObject;
     private ScoreSystem _scoreSystem;
 
     private Vector3 _objectRotation;
@@ -29,18 +29,19 @@ public class BuildingSystem : MonoBehaviour
 
     private void Start()
     {
-        _scoreSystem = GameManager.instance.scoreSystem;
+        _scoreSystem = GameManager.Instance.scoreSystem;
     }
 
     private void RotateSelectedItem() => ObjectRotation = new Vector3(0, 0, _objectRotation.z + 90);
 
-    public void SelectItem(BuildingStuff item)
+    public void SelectItem(BuildingSO item)
     {
         if (!_scoreSystem.WithdrawCoins(item.price))
             return;
 
         selectedObject = item;
-        _selectedObjectSpriteRenderer = selectedObject.GetComponent<SpriteRenderer>();
+        _selectedObjectSpriteRenderer = selectedObject.building.GetComponent<SpriteRenderer>();
+        GameManager.Instance.shopManager.ToggleShop();
     }
 
     public void SpawnItem()
@@ -50,12 +51,13 @@ public class BuildingSystem : MonoBehaviour
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        BuildingStuff item = Instantiate(selectedObject, mousePos, Quaternion.Euler(ObjectRotation));
+        Transform item = Instantiate(selectedObject.building, mousePos, Quaternion.Euler(ObjectRotation));
         Instantiate(_buildFX, item.transform.position, Quaternion.identity);
-        GameManager.instance.Astar.Scan();
+        GameManager.Instance.Astar.Scan();
         _cursor.gameObject.SetActive(false);
 
         selectedObject = null;
+        GameManager.Instance.shopManager.ToggleShop();
     }
 
     private void Update()
@@ -77,6 +79,6 @@ public class BuildingSystem : MonoBehaviour
         _cursor.gameObject.SetActive(true);
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _cursor.transform.position = mousePos;
-        _cursor.transform.localScale = selectedObject.transform.localScale;
+        _cursor.transform.localScale = selectedObject.building.transform.localScale;
     }
 }

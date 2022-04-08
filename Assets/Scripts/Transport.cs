@@ -57,6 +57,7 @@ public class Transport : MonoBehaviour
         Instantiate(detonatedBody, transform.position, Quaternion.Euler(transform.eulerAngles));
         entityHealth.CreateParticle(explosionFXs[Random.Range(0, explosionFXs.Length)]);
         gameObject.SetActive(false);
-        GameManager.instance.ScanAStar();
+        GameManager.Instance.ScanAStar();
+        GameManager.Instance.battleManager.currentEnemiesInAction.Remove(transform);
     }
 }

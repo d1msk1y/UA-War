@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 4655263363199217987}
   - component: {fileID: 4655263363199218015}
   - component: {fileID: 4655263363199218012}
-  - component: {fileID: 4655263363199218013}
   - component: {fileID: 4655263363199217986}
   m_Layer: 0
   m_Name: Gun
@@ -129,27 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082a42d8afa670e46b753a195bd3f87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunConfig: {fileID: 4655263363199218013}
+  gunConfig: {fileID: 0}
   firePos: {fileID: 4655263362247773800}
+  shotFx: {fileID: 3501715155389588550}
   targetMask:
     serializedVersion: 2
     m_Bits: 0
-  shotFx: {fileID: 3501715155389588550}
---- !u!114 &4655263363199218013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4655263363199217984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d5d72cde26ff349919605671ebccd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  shootingRatio: 0.1
-  recoilForce: 25
 --- !u!120 &4655263363199217986
 LineRenderer:
   m_ObjectHideFlags: 0

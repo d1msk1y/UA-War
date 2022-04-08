@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
     public BattleManager battleManager;
     public BuildingSystem buildingSystem;
     public ScoreSystem scoreSystem;
+    public ShopManager shopManager;
+    public UpgradeSystem upgradeSystem;
 
-    public static GameManager instance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public void ScanAStar()

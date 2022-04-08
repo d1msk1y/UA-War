@@ -40,7 +40,7 @@ public class Tank : Transport
             StopMove();
 
         if (aIPath.reachedDestination)
-            GameManager.instance.ScanAStar();
+            GameManager.Instance.ScanAStar();
     }
 
     private float CalculateRotation(Transform target)

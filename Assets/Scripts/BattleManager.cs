@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Spawn")]
     [SerializeField] private GameObject[] enemiesToSpawn;
+    public List<Transform> currentEnemiesInAction;
     [SerializeField] private Transform[] spawners;
     [SerializeField] private float spawnRatio;
     private float _spawnerTimer;
@@ -21,12 +22,15 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         StartRound();
+        currentEnemiesInAction = new List<Transform>();
     }
 
     private void Update()
     {
         if (ReadyToSpawn())
+        {
             SpawnEnemy(RandomEnemy());
+        }
     }
 
     #region  Rounds
@@ -83,9 +87,9 @@ public class BattleManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject toSpawn)
     {
-        Instantiate(toSpawn,
-        spawners[Random.Range(0, spawners.Length)].position, Quaternion.identity);
+        Instantiate(toSpawn, spawners[Random.Range(0, spawners.Length)].position, Quaternion.identity);
         _spawnerTimer = 0;
+        currentEnemiesInAction.Add(toSpawn.transform);
     }
 
     #endregion

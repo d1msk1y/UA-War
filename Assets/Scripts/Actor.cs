@@ -27,11 +27,12 @@ public class Actor : MonoBehaviour
     {
         StartCoroutine(DieCoroutine());
         GetComponent<EntityHealth>().onDieEvent += DropScore;
+        GameManager.Instance.battleManager.currentEnemiesInAction.Remove(transform);
     }
 
     private void DropScore()
     {
-        GameManager.instance.scoreSystem.AddCoins(price);
-        GameManager.instance.scoreSystem.AddScore(score);
+        GameManager.Instance.scoreSystem.AddCoins(price);
+        GameManager.Instance.scoreSystem.AddScore(score);
     }
 }

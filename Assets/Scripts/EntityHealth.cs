@@ -13,6 +13,19 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     public ParticleSystem hitParticle;
 
+    public int MaxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+
+        set
+        {
+            _maxHealth = value;
+        }
+    }
+
     public UnityEvent onDie;
 
     public delegate void EntityHandler();

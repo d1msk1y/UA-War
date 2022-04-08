@@ -10,9 +10,11 @@ public class Gun : MonoBehaviour
     public Transform firePos;
     public SpriteRenderer shotFx;
 
+    [Header("Parameters")]
+    public int damageMultiplier;
+
     [Header("Other")]
-    [Tooltip("By this mask gun is detecting object which are should be shoted and what are not")]
-    public LayerMask targetMask;
+    [HideInInspector] public LayerMask targetMask;
     [HideInInspector] public RaycastHit2D gunRaycast;
 
     private LineRenderer _lineRenderer;

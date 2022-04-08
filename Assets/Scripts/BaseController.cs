@@ -30,7 +30,7 @@ public class BaseController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (GameManager.instance.buildingSystem.selectedObject)
+            if (GameManager.Instance.buildingSystem.selectedObject)
                 return;
             Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             character.gun.Shoot(aimPos);
