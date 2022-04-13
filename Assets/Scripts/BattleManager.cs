@@ -38,16 +38,16 @@ public class BattleManager : MonoBehaviour
     public void StartRound()
     {
         _isRest = false;
-        BattleHandler onRoundEnd = StopRound;
-        StartCoroutine(StartTimer(_roundTime, onRoundEnd));
+        StartCoroutine(StartTimer(_roundTime, StopRound));
     }
 
     private void StopRound()
     {
         _currentRound++;
+        if (spawnRatio < 1)
+            spawnRatio -= 0.1f;
         _isRest = true;
-        BattleHandler onRoundStart = StartRound;
-        StartCoroutine(StartTimer(_restTime, onRoundStart));
+        StartCoroutine(StartTimer(_restTime, StartRound));
     }
 
     private IEnumerator StartTimer(float time, BattleHandler function)

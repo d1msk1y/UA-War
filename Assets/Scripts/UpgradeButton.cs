@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public class UpgradeButton : MonoBehaviour
 {
     [Header("Parameters")]
-    private int _stage;//current upgrade stage
+    private int _stage = 1;//current upgrade stage
     private int _price;
     [SerializeField] private UpgradeSO _upgradeSO;
 
-    private int _upgradeValue;//nextUpgrade
-    public int UpgradeValue { get { return _upgradeValue; } set { _upgradeValue = value; } }
+    private float _upgradeValue;//nextUpgrade
+    public float UpgradeValue { get { return _upgradeValue; } set { _upgradeValue = value; } }
 
     private Button _button;
 
@@ -25,18 +25,6 @@ public class UpgradeButton : MonoBehaviour
         SetButton();
     }
 
-    private bool WithdrawCoins() => GameManager.Instance.scoreSystem.WithdrawCoins(CalculatedPrice());
-    private bool StageInBounds() => _stage >= _upgradeSO.upgradeStages.Length;
-
-    public void Upgrade()
-    {
-        if (StageInBounds() || WithdrawCoins())
-            return;
-        _stage++;
-        _upgradeValue = _upgradeSO.upgradeStages[_stage];
-        OnUpgrade?.Invoke();
-    }
-
     private int CalculatedPrice()
     {
         float multipiedPrice = _price - 2;
@@ -44,10 +32,46 @@ public class UpgradeButton : MonoBehaviour
 
         return (int)multipiedPrice;
     }
+    private bool WithdrawCoins() => GameManager.Instance.scoreSystem.WithdrawCoins(CalculatedPrice());
+    //Cause array lenght doesn't match the latest array obj
+    private bool StageInBounds() => _stage < _upgradeSO.upgradeStages.Length - 1;
+    private bool TransactionAccepted()
+    {
+        if (!StageInBounds())
+        {
+            Debug.Log("Upgrade is completely bought");
+            DenyTransaction();
+            return false;
+        }
+        else if (!WithdrawCoins())
+        {
+            DenyTransaction();
+            return false;
+        }
+        else
+        {
+            WithdrawCoins();
+            return true;
+        }
+    }
+
+    public void Upgrade()
+    {
+        if (!TransactionAccepted())
+            return;
+        _stage++;
+        UpgradeValue = _upgradeSO.upgradeStages[_stage];
+        OnUpgrade?.Invoke();
+    }
+
+    private void DenyTransaction()
+    {
+        _button.interactable = false;
+    }
 
     private void SetButton()
     {
-        _button = GetComponent<Button>();
+        _button = GetComponentInChildren<Button>();
         _button.onClick.AddListener(() =>
         {
             Upgrade();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class Soldier : Actor
+public class Soldier : Enemy
 {
     [Header("Parameters")]
     public float radius;

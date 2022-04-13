@@ -7,7 +7,7 @@ using Pathfinding;
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(AIDestinationSetter))]
 
-public class Transport : MonoBehaviour
+abstract public class Transport : MonoBehaviour
 {
     [Header("Components")]
     internal AIPath aIPath;

@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7521178291c57b84aa2fc298f18093e4, type: 3}
-  m_Name: BulletThrower
+  m_Script: {fileID: 11500000, guid: 964c661e31cc23e44b2ef2ba7bebe0b4, type: 3}
+  m_Name: Gun Upgrade
   m_EditorClassIdentifier: 
-  damage: 5
-  ammos: 90
-  reloadingTime: 0
-  shootingRatio: 0.1
-  recoilForce: 0
+  upgradeStages: 
+  price: 0
+  priceMultiplier: 0

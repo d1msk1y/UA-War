@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu()]
 public class UpgradeSO : ScriptableObject
 {
-    public int[] upgradeStages;
+    public float[] upgradeStages;
 
     public int price;
     public float priceMultiplier;

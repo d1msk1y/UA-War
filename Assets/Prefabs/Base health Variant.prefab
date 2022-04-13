@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 191211337227531833, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 191211337227531833, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3132490228550838640, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
       propertyPath: m_text
       value: Base
@@ -159,5 +167,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3087727586994956846, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+    - {fileID: 9184544877950928626, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+    - {fileID: 2873162451824377898, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+    - {fileID: 8750002190255287504, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+--- !u!1 &45791500411499299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3132490229952364088, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+  m_PrefabInstance: {fileID: 3159970463630970139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5959450626071798219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45791500411499299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23324e41a1d7e845b590c9b31fbcf77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeSO: {fileID: 11400000, guid: bcba648d08060b1458306ee5836cd962, type: 2}
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UpgradeSystem, Assembly-CSharp
+        m_MethodName: UpgradeBase
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UpgradeButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

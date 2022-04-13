@@ -6,12 +6,29 @@ using UnityEngine.Events;
 public class Gun : MonoBehaviour
 {
     [Header("Main references & parts")]
-    public GunConfig gunConfig;
+    public GunSO gunConfig;
     public Transform firePos;
     public SpriteRenderer shotFx;
 
     [Header("Parameters")]
-    public int damageMultiplier;
+    public float damageMultiplier;
+    [HideInInspector] public float extraAmmosPercent;
+    private int _extraAmmos;
+    private int _ammos;
+    private int Ammos
+    {
+        get { return _ammos; }
+        set
+        {
+            _ammos = value;
+            if (_ammos <= 0)
+            {
+                _itCanShoot = false;
+                StartCoroutine(Reload());
+            }
+            else _itCanShoot = true;
+        }
+    }
 
     [Header("Other")]
     [HideInInspector] public LayerMask targetMask;
@@ -26,6 +43,28 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        SetGun();
+    }
+
+    private void SetGun()
+    {
+        _ammos = gunConfig.ammos;
+    }
+
+    private int ExtraAmmos()
+    {
+        float extraAmmos = _ammos;
+        extraAmmos -= extraAmmos * extraAmmosPercent;
+
+        return (int)-extraAmmos;
+    }
+
+    private IEnumerator Reload()
+    {
+        Debug.Log(transform.parent.name + " reloading!");
+        yield return new WaitForSeconds(gunConfig.reloadingTime);
+        Debug.Log(transform.parent.name + " is reloaded!");
+        _ammos = gunConfig.ammos + ExtraAmmos();
     }
 
     public void Shoot(Vector3 aimPos)
@@ -34,6 +73,8 @@ public class Gun : MonoBehaviour
             return;
 
         gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 20, targetMask);
+
+        Ammos -= 1;
 
         Vector2 hitPos = Vector2.zero;
         if (gunRaycast.collider == null)
@@ -54,7 +95,7 @@ public class Gun : MonoBehaviour
         while (timer < gunConfig.shootingRatio)
         {
             timer += 1 * Time.deltaTime;
-            if (timer >= gunConfig.shootingRatio)
+            if (timer >= gunConfig.shootingRatio && Ammos > 0)
                 _itCanShoot = true;
             yield return null;
         }
@@ -71,7 +112,7 @@ public class Gun : MonoBehaviour
         EntityHealth target = damagedEntity.GetComponent<EntityHealth>();
         if (target == null)
             return;
-        target.TakeDamage(gunConfig.damage);
+        target.TakeDamage((int)(gunConfig.damage * damageMultiplier));
         CreateParticle(target.hitParticle);
     }
 

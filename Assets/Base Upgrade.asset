@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964c661e31cc23e44b2ef2ba7bebe0b4, type: 3}
   m_Name: Base Upgrade
   m_EditorClassIdentifier: 
-  upgradeFunction:
-    m_PersistentCalls:
-      m_Calls: []
-  upgradeStages: 0000000000000000000000000000000000000000
-  price: 113
-  priceMultiplier: 2
+  upgradeStages: 90010000f40100002602000058020000bc020000
+  price: 100
+  priceMultiplier: 1

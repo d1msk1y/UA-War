@@ -128,9 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082a42d8afa670e46b753a195bd3f87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunConfig: {fileID: 0}
+  gunConfig: {fileID: 11400000, guid: 1512f41b354090f4c89f97ab83fc63ff, type: 2}
   firePos: {fileID: 4655263362247773800}
   shotFx: {fileID: 3501715155389588550}
+  damageMultiplier: 1
+  extraAmmosPercent: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 0

@@ -23,6 +23,7 @@ public class EntityHealth : MonoBehaviour
         set
         {
             _maxHealth = value;
+            _health = value;
         }
     }
 
