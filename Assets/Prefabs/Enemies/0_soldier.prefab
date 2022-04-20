@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 545955974936623775}
   - component: {fileID: 545955974936623773}
   m_Layer: 6
-  m_Name: russia_Z_soldier
+  m_Name: 0_soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,17 +85,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 545955975327267152}
   body: {fileID: 545955976101278977}
-  price: 50
-  score: 25
-  radius: 8.5
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _escapeSpeed: 3
+  enemyParams: {fileID: 11400000, guid: 84d306572f5b7664a8a4f09ec13f528e, type: 2}
   legs: {fileID: 545955975077651317}
   aIPath: {fileID: 545955974936623775}
   destinationTarget: {fileID: 0}
-  aimTarget: {fileID: 0}
   hostageStatement: {fileID: 0}
   deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
 --- !u!114 &545955974936623774

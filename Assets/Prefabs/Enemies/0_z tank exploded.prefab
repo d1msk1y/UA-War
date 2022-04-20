@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 136376354358813400}
   - component: {fileID: 6797556166923287119}
   m_Layer: 6
-  m_Name: tank exploded
+  m_Name: 0_z tank exploded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

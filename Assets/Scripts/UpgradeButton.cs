@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Button))]
 public class UpgradeButton : MonoBehaviour
 {
     [Header("Parameters")]
-    private int _stage = 1;//current upgrade stage
+    private int _stage;//current upgrade stage
     private int _price;
     [SerializeField] private UpgradeSO _upgradeSO;
 
+    [Header("GFX")]
+    [SerializeField] private TextMeshProUGUI _stageText;
+    [SerializeField] private TextMeshProUGUI _priceText;
+    private Button _button;
+
     private float _upgradeValue;//nextUpgrade
     public float UpgradeValue { get { return _upgradeValue; } set { _upgradeValue = value; } }
-
-    private Button _button;
 
     public delegate void UpgradesHandler(int a);
     public UnityEvent OnUpgrade;
@@ -23,12 +25,16 @@ public class UpgradeButton : MonoBehaviour
     private void Start()
     {
         SetButton();
+        _price = _upgradeSO.price;
+        SetGfx();
+        GameManager.Instance.scoreSystem.OnMoneyChange += CheckButtonAbility;
     }
 
     private int CalculatedPrice()
     {
-        float multipiedPrice = _price - 2;
+        float multipiedPrice = _price;
         multipiedPrice *= _upgradeSO.priceMultiplier;
+        _price = (int)multipiedPrice;
 
         return (int)multipiedPrice;
     }
@@ -42,6 +48,7 @@ public class UpgradeButton : MonoBehaviour
         if (!StageInBounds())
         {
             Debug.Log("Upgrade is completely bought");
+            _button.interactable = false;
             DenyTransaction();
             return false;
         }
@@ -56,18 +63,33 @@ public class UpgradeButton : MonoBehaviour
         }
     }
 
+    private void CheckButtonAbility()
+    {
+        if (GameManager.Instance.scoreSystem.TotalCoins < _price)
+            _button.interactable = false;
+        else
+            _button.interactable = true;
+    }
+
     public void Upgrade()
     {
         if (!TransactionAccepted())
             return;
         _stage++;
+        SetGfx();
         UpgradeValue = _upgradeSO.upgradeStages[_stage];
         OnUpgrade?.Invoke();
     }
 
+    private void SetGfx()
+    {
+        _stageText.text = (_stage + 1) + "/" + _upgradeSO.upgradeStages.Length; // front-end stage serializer
+        _priceText.text = _price.ToString();
+    }
+
     private void DenyTransaction()
     {
-        _button.interactable = false;
+        //Some fun gfx stuff to do
     }
 
     private void SetButton()

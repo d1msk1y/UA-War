@@ -8,16 +8,28 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private int _currentRound;
     [SerializeField] private int _roundTime;
     [SerializeField] private int _restTime;
-    public bool isRest;
+    [SerializeField] private bool _isRest;
+
+    public bool IsRest
+    {
+        get { return _isRest; }
+        set
+        {
+            _isRest = value;
+            if (IsRest)
+                OnRest?.Invoke();
+        }
+    }
 
     [Header("Spawn")]
-    [SerializeField] private GameObject[] enemiesToSpawn;
     public List<Transform> currentEnemiesInAction;
     public Transform[] spawners;
-    [SerializeField] private float spawnRatio;
     private float _spawnerTimer;
+    [SerializeField] private GameObject[] enemiesToSpawn;
+    [SerializeField] private float spawnRatio;
 
-    private delegate void BattleHandler();
+    public delegate void BattleHandler();
+    public event BattleHandler OnRest;
 
     private void Start()
     {
@@ -37,7 +49,7 @@ public class BattleManager : MonoBehaviour
 
     public void StartRound()
     {
-        isRest = false;
+        IsRest = false;
         StartCoroutine(StartTimer(_roundTime, StopRound));
     }
 
@@ -46,8 +58,7 @@ public class BattleManager : MonoBehaviour
         _currentRound++;
         if (spawnRatio < 1)
             spawnRatio -= 0.1f;
-        isRest = true;
-        StartCoroutine(StartTimer(_restTime, StartRound));
+        IsRest = true;
     }
 
     private IEnumerator StartTimer(float time, BattleHandler function)
@@ -77,7 +88,7 @@ public class BattleManager : MonoBehaviour
     private bool ReadyToSpawn()
     {
         _spawnerTimer += 1 * Time.deltaTime;
-        if (_spawnerTimer >= spawnRatio && !isRest)
+        if (_spawnerTimer >= spawnRatio && !IsRest)
         {
             return true;
         }

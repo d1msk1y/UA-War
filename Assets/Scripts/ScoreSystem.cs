@@ -6,15 +6,19 @@ public class ScoreSystem : MonoBehaviour
 {
     [SerializeField] private int _totalCoins;
     [SerializeField] private int _obtainedScore;
-    private int TotalCoins
+    public int TotalCoins
     {
         get { return _totalCoins; }
         set
         {
             _totalCoins = value;
+            OnMoneyChange?.Invoke();
             GameManager.Instance.uiManager.SetCoinsText(_totalCoins);
         }
     }
+
+    public delegate void ScoreHandler();
+    public event ScoreHandler OnMoneyChange;
 
     public void AddScore(int score)
     {

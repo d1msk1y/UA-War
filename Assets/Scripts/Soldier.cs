@@ -11,13 +11,12 @@ public class Soldier : Enemy
     private void Start()
     {
         gun.OnShootEvent += GetRaycastHit;
-        gun.targetMask = targetMask;
+        gun.targetMask = enemyParams.targetMask;
         destinationTarget = BaseController.instance.transform;
-        aimTarget = BaseController.instance.transform;
         aIPath.destination = destinationTarget.position;
 
         mainAction = Shoot;
     }
 
-    private void Shoot() => gun.Shoot(aimTarget.position);
+    private void Shoot() => gun.Shoot(destinationTarget.position);
 }

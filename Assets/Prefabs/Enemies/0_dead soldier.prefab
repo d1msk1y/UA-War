@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5532455616030386103}
   - component: {fileID: 1151585641487549343}
   m_Layer: 0
-  m_Name: dead soldier
+  m_Name: 0_dead soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

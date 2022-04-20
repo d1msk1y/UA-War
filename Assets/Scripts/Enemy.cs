@@ -9,49 +9,37 @@ using Pathfinding;
 public class Enemy : Actor
 {
     [Header("Parameters")]
-    public int price;
-    public int score;
-    public float radius;
-    public LayerMask targetMask;
-    [SerializeField] private float _escapeSpeed;
+    [SerializeField] internal EnemySO enemyParams;
 
     [Header("Extra references")]
     public GameObject legs;
-    public AIPath aIPath;
-
-    [Header("Destinations")]
-    public Transform destinationTarget;
-    public Transform aimTarget;
 
     [Header("Base References")]
-    public Hostage hostageStatement;
-    public GameObject deadBody;
+    [SerializeField] internal AIPath aIPath;
+    [SerializeField] internal Transform destinationTarget;
+    [SerializeField] internal Hostage hostageStatement;
+    [SerializeField] internal GameObject deadBody;
 
     internal delegate void EnemyHandler();
     internal EnemyHandler mainAction;
 
+    private void Start()
+    {
+        GameManager.Instance.battleManager.OnRest += Escape;
+    }
+
     private void Update()
     {
-        if (GameManager.Instance.battleManager.isRest)
-            Escape();
-
-        if (aimTarget == null)
+        if (destinationTarget == null)
             return;
 
-        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(aimTarget));
+        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destinationTarget));
         legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destinationTarget));
 
         if (!TargetInRadius())
             return;
         mainAction();
 
-    }
-
-    private void Escape()
-    {
-        destinationTarget = GameManager.Instance.battleManager.spawners[1];
-        aIPath.maxSpeed = _escapeSpeed;
-        Invoke("Die", 9);
     }
 
     public void Die()
@@ -63,18 +51,43 @@ public class Enemy : Actor
         GameManager.Instance.battleManager.currentEnemiesInAction.Remove(transform);
     }
 
+    private void Escape()
+    {
+        destinationTarget = GameManager.Instance.battleManager.spawners[1];
+        aIPath.maxSpeed = enemyParams.escapeSpeed;
+        Invoke("Die", 9);
+    }
+
     private void DropScore()
     {
-        GameManager.Instance.scoreSystem.AddCoins(price);
-        GameManager.Instance.scoreSystem.AddScore(score);
+        GameManager.Instance.scoreSystem.AddCoins(enemyParams.price);
+        GameManager.Instance.scoreSystem.AddScore(enemyParams.score);
     }
 
     private bool TargetInRadius()
     {
-        if (Vector2.Distance(transform.position, aimTarget.transform.position) > radius)
+        if (Vector2.Distance(transform.position, destinationTarget.transform.position) > enemyParams.radius)
             return false;
         else
             return true;
+    }
+
+    private IEnumerator DieCoroutine()
+    {
+        gameObject.SetActive(false);
+        GameObject deadObj =
+        Instantiate(deadBody, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+
+        yield return new WaitForSeconds(30);
+
+        Destroy(deadObj);
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, enemyParams.radius);
+        Gizmos.color = Color.green;
     }
 
     private float CalculateRotation(Transform target)
@@ -83,21 +96,5 @@ public class Enemy : Actor
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
         return angle;
-    }
-
-    private IEnumerator DieCoroutine()
-    {
-        gameObject.SetActive(false);
-        GameObject deadObj =
-        Instantiate(deadBody, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
-        yield return new WaitForSeconds(30);
-        Destroy(deadObj);
-        Destroy(gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
-        Gizmos.color = Color.green;
     }
 }

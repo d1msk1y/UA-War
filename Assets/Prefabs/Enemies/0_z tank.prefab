@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 3918493106754735570}
   - component: {fileID: 3918493106754735583}
   m_Layer: 6
-  m_Name: russia z tank
+  m_Name: 0_z tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
