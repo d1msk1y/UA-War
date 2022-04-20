@@ -11,5 +11,4 @@ public class GunSO : ScriptableObject
     public float reloadingTime;
     public float shootingRatio;
     public float recoilForce;
-
 }

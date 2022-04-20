@@ -8,12 +8,12 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private int _currentRound;
     [SerializeField] private int _roundTime;
     [SerializeField] private int _restTime;
-    [SerializeField] private bool _isRest;
+    public bool isRest;
 
     [Header("Spawn")]
     [SerializeField] private GameObject[] enemiesToSpawn;
     public List<Transform> currentEnemiesInAction;
-    [SerializeField] private Transform[] spawners;
+    public Transform[] spawners;
     [SerializeField] private float spawnRatio;
     private float _spawnerTimer;
 
@@ -37,7 +37,7 @@ public class BattleManager : MonoBehaviour
 
     public void StartRound()
     {
-        _isRest = false;
+        isRest = false;
         StartCoroutine(StartTimer(_roundTime, StopRound));
     }
 
@@ -46,7 +46,7 @@ public class BattleManager : MonoBehaviour
         _currentRound++;
         if (spawnRatio < 1)
             spawnRatio -= 0.1f;
-        _isRest = true;
+        isRest = true;
         StartCoroutine(StartTimer(_restTime, StartRound));
     }
 
@@ -77,7 +77,7 @@ public class BattleManager : MonoBehaviour
     private bool ReadyToSpawn()
     {
         _spawnerTimer += 1 * Time.deltaTime;
-        if (_spawnerTimer >= spawnRatio && !_isRest)
+        if (_spawnerTimer >= spawnRatio && !isRest)
         {
             return true;
         }

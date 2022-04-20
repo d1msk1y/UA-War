@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildingSystem : MonoBehaviour
 {
+    [Header("Parameters")]
+    public float extraHealthPercent = 1;
+
     [Header("GFX")]
     [SerializeField] private ParticleSystem _buildFX;
     [SerializeField] private SpriteRenderer _cursor;
@@ -12,7 +15,6 @@ public class BuildingSystem : MonoBehaviour
 
     public BuildingSO selectedObject;
     private ScoreSystem _scoreSystem;
-
     private Vector3 _objectRotation;
     private Vector3 ObjectRotation
     {
@@ -32,6 +34,19 @@ public class BuildingSystem : MonoBehaviour
         _scoreSystem = GameManager.Instance.scoreSystem;
     }
 
+    private void Update()
+    {
+        if (selectedObject != null)
+        {
+            SetCursor();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                Build();
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+                RotateSelectedItem();
+
+        }
+    }
+
     private void RotateSelectedItem() => ObjectRotation = new Vector3(0, 0, _objectRotation.z + 90);
 
     public void SelectItem(BuildingSO item)
@@ -44,33 +59,36 @@ public class BuildingSystem : MonoBehaviour
         GameManager.Instance.shopManager.ToggleShop();
     }
 
-    public void SpawnItem()
+    public void Build()
     {
         if (selectedObject == null)
             return;
-
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Transform item = Instantiate(selectedObject.building, mousePos, Quaternion.Euler(ObjectRotation));
-        Instantiate(_buildFX, item.transform.position, Quaternion.identity);
-        GameManager.Instance.Astar.Scan();
+        SpawnItem();
         _cursor.gameObject.SetActive(false);
-
-        selectedObject = null;
         GameManager.Instance.shopManager.ToggleShop();
     }
 
-    private void Update()
+    private void SpawnItem()
     {
-        if (selectedObject != null)
-        {
-            SetCursor();
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                SpawnItem();
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-                RotateSelectedItem();
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Transform item = Instantiate(selectedObject.building, mousePos, Quaternion.Euler(ObjectRotation));
+        Instantiate(_buildFX, item.transform.position, Quaternion.identity);
+        GameManager.Instance.Astar.Scan();
+        selectedObject = null;
+    }
 
-        }
+    private void SetBuilding()
+    {
+        EntityHealth entityHealth = selectedObject.building.GetComponent<EntityHealth>();
+        int extraHealth = ExtraHealth(entityHealth);
+        entityHealth.MaxHealth += extraHealth;
+    }
+
+    private int ExtraHealth(EntityHealth entityHealth)
+    {
+        float extraHealth = entityHealth.MaxHealth * extraHealthPercent;
+
+        return (int)extraHealth;
     }
 
     private void SetCursor()

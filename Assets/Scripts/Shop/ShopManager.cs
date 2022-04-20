@@ -10,11 +10,6 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] bool _toggledShop;
 
-    private void GenerateUpgrades()
-    {
-        
-    }
-
     public void ToggleShop()
     {
         if (!_toggledShop)

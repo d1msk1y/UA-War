@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BaseController : MonoBehaviour
 {
@@ -30,10 +30,19 @@ public class BaseController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (GameManager.Instance.buildingSystem.selectedObject)
+            if (GameManager.Instance.buildingSystem.selectedObject || EventSystem.current.IsPointerOverGameObject())
                 return;
-            Vector3 aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            character.gun.Shoot(aimPos);
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                CheckAmmo();
+            character.gun.Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+    }
+
+    private void CheckAmmo()
+    {
+        if (character.gun.Ammos <= 0)
+        {
+            GameManager.Instance.uiManager.SetGunText(Input.mousePosition, "RELOAING!");
         }
     }
 

@@ -11,11 +11,11 @@ public class Gun : MonoBehaviour
     public SpriteRenderer shotFx;
 
     [Header("Parameters")]
-    public float damageMultiplier;
     [HideInInspector] public float extraAmmosPercent;
     private int _extraAmmos;
     private int _ammos;
-    private int Ammos
+    public float damageMultiplier;
+    public int Ammos
     {
         get { return _ammos; }
         set
@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
                 _itCanShoot = false;
                 StartCoroutine(Reload());
             }
-            else _itCanShoot = true;
+            else if (_ammos > 0) _itCanShoot = true;
         }
     }
 
@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
 
     private void SetGun()
     {
-        _ammos = gunConfig.ammos;
+        Ammos = gunConfig.ammos;
     }
 
     private int ExtraAmmos()
@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour
         Debug.Log(transform.parent.name + " reloading!");
         yield return new WaitForSeconds(gunConfig.reloadingTime);
         Debug.Log(transform.parent.name + " is reloaded!");
-        _ammos = gunConfig.ammos + ExtraAmmos();
+        Ammos = gunConfig.ammos + ExtraAmmos();
     }
 
     public void Shoot(Vector3 aimPos)

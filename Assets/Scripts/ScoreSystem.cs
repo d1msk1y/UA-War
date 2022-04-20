@@ -6,6 +6,15 @@ public class ScoreSystem : MonoBehaviour
 {
     [SerializeField] private int _totalCoins;
     [SerializeField] private int _obtainedScore;
+    private int TotalCoins
+    {
+        get { return _totalCoins; }
+        set
+        {
+            _totalCoins = value;
+            GameManager.Instance.uiManager.SetCoinsText(_totalCoins);
+        }
+    }
 
     public void AddScore(int score)
     {
@@ -14,20 +23,20 @@ public class ScoreSystem : MonoBehaviour
 
     public void AddCoins(int coins)
     {
-        _totalCoins += coins;
+        TotalCoins += coins;
     }
 
     //Return Successful/Unsuccessful result of cash out. True = success.
     public bool WithdrawCoins(int coins)
     {
-        if (coins > _totalCoins)
+        if (coins > TotalCoins)
         {
             Debug.Log("Not enough coins");
             return false;
         }
         else
         {
-            _totalCoins -= coins;
+            TotalCoins -= coins;
             return true;
         }
     }

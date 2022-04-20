@@ -83,19 +83,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07353b92e1aab54bbe7b1a4b0f790be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
-  score: 25
   gun: {fileID: 545955975327267152}
   body: {fileID: 545955976101278977}
-  deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
+  price: 50
+  score: 25
   radius: 8.5
   targetMask:
     serializedVersion: 2
     m_Bits: 256
+  _escapeSpeed: 3
   legs: {fileID: 545955975077651317}
   aIPath: {fileID: 545955974936623775}
   destinationTarget: {fileID: 0}
   aimTarget: {fileID: 0}
+  hostageStatement: {fileID: 0}
+  deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
 --- !u!114 &545955974936623774
 MonoBehaviour:
   m_ObjectHideFlags: 0

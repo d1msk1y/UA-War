@@ -32,9 +32,11 @@ public class UpgradeButton : MonoBehaviour
 
         return (int)multipiedPrice;
     }
+
     private bool WithdrawCoins() => GameManager.Instance.scoreSystem.WithdrawCoins(CalculatedPrice());
     //Cause array lenght doesn't match the latest array obj
     private bool StageInBounds() => _stage < _upgradeSO.upgradeStages.Length - 1;
+
     private bool TransactionAccepted()
     {
         if (!StageInBounds())
@@ -50,7 +52,6 @@ public class UpgradeButton : MonoBehaviour
         }
         else
         {
-            WithdrawCoins();
             return true;
         }
     }

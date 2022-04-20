@@ -563,8 +563,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Usually used for protection
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cce55db759271704f84838b6d2a3ce73, type: 2}
-  m_sharedMaterial: {fileID: -91011969944806542, guid: cce55db759271704f84838b6d2a3ce73, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 27bfee1c83948864b8f9d4b07d358593, type: 2}
+  m_sharedMaterial: {fileID: -91011969944806542, guid: 27bfee1c83948864b8f9d4b07d358593, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
