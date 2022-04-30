@@ -5,13 +5,14 @@ using Pathfinding;
 
 public class GameManager : MonoBehaviour
 {
-    public AstarPath Astar;
     public BattleManager battleManager;
     public ShopManager shopManager;
     public UiManager uiManager;
+    public SoundManager soundManager;
     public ScoreSystem scoreSystem;
     public BuildingSystem buildingSystem;
     public UpgradeSystem upgradeSystem;
+    public AstarPath Astar;
 
     public static GameManager Instance;
 

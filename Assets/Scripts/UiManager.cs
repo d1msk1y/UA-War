@@ -9,7 +9,9 @@ public class UiManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private GameObject _hud;
     [SerializeField] private TextMeshProUGUI _coinsText;
-    [SerializeField] private GameObject _gunTxt;
+
+    [Header("GUI")]
+    [SerializeField] private Button _startButton;
 
     [Header("Shop")]
     [SerializeField] private GameObject _shop;
@@ -18,17 +20,31 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _hostages;
     [SerializeField] private GameObject _hostageCaught;
 
+    [Header("UI GFX")]
+    public GameObject _gunTxt;
+    public GameObject _headerTxt;
+
+    [Header("UI VFX")]
+    public ParticleSystem coinsWithdraw;
+
+    private void Start()
+    {
+        GameManager.Instance.scoreSystem.OnMoneyChange += SpawnWithdrawVfx;
+    }
+
     public void SetCoinsText(int coins) => _coinsText.text = coins.ToString();
+
+    public void SetNewGUIText(GameObject textObj, Vector3 position, string text)
+    {
+        TextMeshProUGUI uiText = Instantiate(textObj, position, Quaternion.identity, _hud.transform)
+        .GetComponentInChildren<TextMeshProUGUI>();
+        uiText.text = text;
+
+        Destroy(uiText, uiText.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
+    }
 
     public void ToggleShop() => GameManager.Instance.shopManager.ToggleShop();
     public void ToggleHostages() => Debug.Log("Hostages toggled");
-
-    public void SetGunText(Vector3 position, string text)
-    {
-        TextMeshProUGUI gunText = Instantiate(_gunTxt, position, Quaternion.identity, _hud.transform)
-        .GetComponentInChildren<TextMeshProUGUI>();
-        gunText.text = text;
-    }
 
     public void ToggleHostageCaught()
     {
@@ -37,4 +53,7 @@ public class UiManager : MonoBehaviour
         else
             _hostageCaught.SetActive(true);
     }
+
+    public void SpawnWithdrawVfx()
+    => Instantiate(coinsWithdraw, _coinsText.transform.position, Quaternion.identity, _hud.transform);
 }

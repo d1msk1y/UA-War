@@ -6,17 +6,26 @@ using Pathfinding;
 public class Soldier : Enemy
 {
     private RaycastHit2D gunRaycast;
+    public Gun gun;
     private void GetRaycastHit() => gunRaycast = gun.gunRaycast;
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         gun.OnShootEvent += GetRaycastHit;
         gun.targetMask = enemyParams.targetMask;
-        destinationTarget = BaseController.instance.transform;
-        aIPath.destination = destinationTarget.position;
+        DestinationTarget = BaseController.instance.transform;
 
-        mainAction = Shoot;
+        Attack = Shoot;
     }
 
-    private void Shoot() => gun.Shoot(destinationTarget.position);
+    private void Shoot() => gun.Shoot(DestinationTarget.position);
+
+    internal override void Escape()
+    {
+        base.Escape();
+        Disarm();
+    }
+
+    private void Disarm() => gun.Ammos = 0;
 }

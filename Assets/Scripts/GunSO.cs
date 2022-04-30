@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class GunSO : ScriptableObject
 {
+    [Header("GFX")]
+    public Sprite shotGFX;
+
     [Header("Parameters")]
     public int damage;
     public int ammos;

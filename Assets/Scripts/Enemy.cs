@@ -16,29 +16,45 @@ public class Enemy : Actor
 
     [Header("Base References")]
     [SerializeField] internal AIPath aIPath;
+    [SerializeField] internal AIDestinationSetter aIDestinationSetter;
     [SerializeField] internal Transform destinationTarget;
+    internal Transform DestinationTarget
+    {
+        get
+        {
+            return destinationTarget;
+        }
+
+        set
+        {
+            destinationTarget = value;
+            aIDestinationSetter.target = destinationTarget;
+        }
+    }
+
     [SerializeField] internal Hostage hostageStatement;
     [SerializeField] internal GameObject deadBody;
 
     internal delegate void EnemyHandler();
-    internal EnemyHandler mainAction;
+    internal EnemyHandler Attack;
 
-    private void Start()
+    protected void Start()
     {
+        aIDestinationSetter = GetComponent<AIDestinationSetter>();
         GameManager.Instance.battleManager.OnRest += Escape;
     }
 
     private void Update()
     {
-        if (destinationTarget == null)
+        if (DestinationTarget == null)
             return;
 
-        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destinationTarget));
-        legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destinationTarget));
+        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
+        legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
 
         if (!TargetInRadius())
             return;
-        mainAction();
+        Attack();
 
     }
 
@@ -51,10 +67,11 @@ public class Enemy : Actor
         GameManager.Instance.battleManager.currentEnemiesInAction.Remove(transform);
     }
 
-    private void Escape()
+    internal virtual void Escape()
     {
-        destinationTarget = GameManager.Instance.battleManager.spawners[1];
+        DestinationTarget = GameManager.Instance.battleManager.escapePoint;
         aIPath.maxSpeed = enemyParams.escapeSpeed;
+
         Invoke("Die", 9);
     }
 
@@ -66,7 +83,7 @@ public class Enemy : Actor
 
     private bool TargetInRadius()
     {
-        if (Vector2.Distance(transform.position, destinationTarget.transform.position) > enemyParams.radius)
+        if (Vector2.Distance(transform.position, DestinationTarget.transform.position) > enemyParams.radius)
             return false;
         else
             return true;
@@ -88,13 +105,5 @@ public class Enemy : Actor
     {
         Gizmos.DrawWireSphere(transform.position, enemyParams.radius);
         Gizmos.color = Color.green;
-    }
-
-    private float CalculateRotation(Transform target)
-    {
-        Vector3 dir = target.position - transform.position;
-
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-        return angle;
     }
 }

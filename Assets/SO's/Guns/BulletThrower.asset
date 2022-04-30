@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7521178291c57b84aa2fc298f18093e4, type: 3}
   m_Name: BulletThrower
   m_EditorClassIdentifier: 
+  shotGFX: {fileID: 21300000, guid: 377146b91ba8f13448c4e3b6eb2d11a2, type: 3}
   damage: 5
   ammos: 30
   reloadingTime: 3

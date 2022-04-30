@@ -8,10 +8,10 @@ public class UpgradeSystem : MonoBehaviour
     => BaseController.instance.GetComponent<EntityHealth>().MaxHealth = (int)upgradeButton.UpgradeValue;
 
     public void UpgradeGun(UpgradeButton upgradeButton)
-    => BaseController.instance.character.gun.damageMultiplier = upgradeButton.UpgradeValue;
+    => BaseController.instance.gun.damageMultiplier = upgradeButton.UpgradeValue;
 
     public void UpgradeAmmos(UpgradeButton upgradeButton)
-    => BaseController.instance.character.gun.extraAmmosPercent = (int)upgradeButton.UpgradeValue;
+    => BaseController.instance.gun.extraAmmosPercent = upgradeButton.UpgradeValue;
 
     public void UpgradeBuildings(UpgradeButton upgradeButton)
     => GameManager.Instance.buildingSystem.extraHealthPercent = upgradeButton.UpgradeValue;

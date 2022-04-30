@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(GunFxSetter))]
 public class Gun : MonoBehaviour
 {
     [Header("Main references & parts")]
     public GunSO gunConfig;
     public Transform firePos;
-    public SpriteRenderer shotFx;
+    private GunFxSetter gunFxSetter;
 
-    [Header("Parameters")]
-    [HideInInspector] public float extraAmmosPercent;
-    private int _extraAmmos;
+    [Header("Ammos")]
+    public float extraAmmosPercent;
     private int _ammos;
     public float damageMultiplier;
     public int Ammos
@@ -34,7 +34,6 @@ public class Gun : MonoBehaviour
     [HideInInspector] public LayerMask targetMask;
     [HideInInspector] public RaycastHit2D gunRaycast;
 
-    private LineRenderer _lineRenderer;
     private bool _itCanShoot = true;
 
     public delegate void GunHandler();
@@ -42,18 +41,18 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
         SetGun();
     }
 
     private void SetGun()
     {
         Ammos = gunConfig.ammos;
+        gunFxSetter = GetComponent<GunFxSetter>();
     }
 
     private int ExtraAmmos()
     {
-        float extraAmmos = _ammos;
+        float extraAmmos = gunConfig.ammos;
         extraAmmos -= extraAmmos * extraAmmosPercent;
 
         return (int)-extraAmmos;
@@ -61,9 +60,7 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        Debug.Log(transform.parent.name + " reloading!");
         yield return new WaitForSeconds(gunConfig.reloadingTime);
-        Debug.Log(transform.parent.name + " is reloaded!");
         Ammos = gunConfig.ammos + ExtraAmmos();
     }
 
@@ -84,7 +81,7 @@ public class Gun : MonoBehaviour
 
         OnShootEvent?.Invoke();
         ShootingRaycast(gunRaycast);
-        StartCoroutine(ShotFX(hitPos));
+        StartCoroutine(gunFxSetter.ShotFX(hitPos));
         StartCoroutine(StartShootingTimer());
     }
 
@@ -118,19 +115,4 @@ public class Gun : MonoBehaviour
 
     private void CreateParticle(ParticleSystem particleSystem) =>
      Instantiate(particleSystem, gunRaycast.point, Quaternion.identity);
-
-    private IEnumerator ShotFX(Vector3 linePos)
-    {
-        _lineRenderer.SetPosition(0, firePos.position);
-        _lineRenderer.SetPosition(1, linePos);
-
-        shotFx.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(0.025f);
-
-        shotFx.gameObject.SetActive(false);
-
-        _lineRenderer.SetPosition(1, firePos.position);
-        yield return null;
-    }
 }

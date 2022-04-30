@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 100
   score: 100
-  radius: 9
+  radius: 11
   targetMask:
     serializedVersion: 2
     m_Bits: 256
-  escapeSpeed: 9
+  escapeSpeed: 3

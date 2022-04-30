@@ -83,14 +83,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07353b92e1aab54bbe7b1a4b0f790be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 545955975327267152}
   body: {fileID: 545955976101278977}
   enemyParams: {fileID: 11400000, guid: 84d306572f5b7664a8a4f09ec13f528e, type: 2}
   legs: {fileID: 545955975077651317}
   aIPath: {fileID: 545955974936623775}
+  aIDestinationSetter: {fileID: 0}
   destinationTarget: {fileID: 0}
   hostageStatement: {fileID: 0}
   deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
+  gun: {fileID: 545955975327267152}
 --- !u!114 &545955974936623774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,6 +852,10 @@ PrefabInstance:
       propertyPath: gunConfig
       value: 
       objectReference: {fileID: 11400000, guid: 1512f41b354090f4c89f97ab83fc63ff, type: 2}
+    - target: {fileID: 4655263363199218012, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
+      propertyPath: extraAmmosPercent
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5043848008967113520, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4686955

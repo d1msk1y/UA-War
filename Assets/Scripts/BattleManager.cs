@@ -7,8 +7,7 @@ public class BattleManager : MonoBehaviour
     [Header("Rounds")]
     [SerializeField] private int _currentRound;
     [SerializeField] private int _roundTime;
-    [SerializeField] private int _restTime;
-    [SerializeField] private bool _isRest;
+    [SerializeField] private bool _isRest = true;
 
     public bool IsRest
     {
@@ -16,7 +15,7 @@ public class BattleManager : MonoBehaviour
         set
         {
             _isRest = value;
-            if (IsRest)
+            if (value == true)
                 OnRest?.Invoke();
         }
     }
@@ -24,16 +23,20 @@ public class BattleManager : MonoBehaviour
     [Header("Spawn")]
     public List<Transform> currentEnemiesInAction;
     public Transform[] spawners;
+    public Transform escapePoint;
     private float _spawnerTimer;
     [SerializeField] private GameObject[] enemiesToSpawn;
-    [SerializeField] private float spawnRatio;
+    [SerializeField] private float _spawnRatio;
+
+    [Header("Complexity")]
+    [SerializeField] private float _coplexityModifier;
+    [SerializeField] private float _minSpawnRatio;
 
     public delegate void BattleHandler();
     public event BattleHandler OnRest;
 
     private void Start()
     {
-        StartRound();
         currentEnemiesInAction = new List<Transform>();
     }
 
@@ -43,6 +46,11 @@ public class BattleManager : MonoBehaviour
         {
             SpawnEnemy(RandomEnemy());
         }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            StopRound();
+        }
     }
 
     #region  Rounds
@@ -50,14 +58,17 @@ public class BattleManager : MonoBehaviour
     public void StartRound()
     {
         IsRest = false;
+        _currentRound++;
+        GameManager.Instance.uiManager.SetNewGUIText(GameManager.Instance.uiManager._headerTxt,
+         new Vector2(0, 5), "WAVE " + _currentRound);
         StartCoroutine(StartTimer(_roundTime, StopRound));
     }
 
     private void StopRound()
     {
-        _currentRound++;
-        if (spawnRatio < 1)
-            spawnRatio -= 0.1f;
+        IncreaseComplexity();
+        GameManager.Instance.uiManager.SetNewGUIText(GameManager.Instance.uiManager._headerTxt,
+        new Vector2(0, 5), "You win! Russians escaped!");
         IsRest = true;
     }
 
@@ -77,6 +88,14 @@ public class BattleManager : MonoBehaviour
 
     #endregion
 
+    private void IncreaseComplexity()
+    {
+        if (_spawnRatio <= _minSpawnRatio)
+            return;
+
+        _spawnRatio -= _coplexityModifier;
+    }
+
     #region Spawn
 
     private GameObject RandomEnemy()
@@ -88,7 +107,7 @@ public class BattleManager : MonoBehaviour
     private bool ReadyToSpawn()
     {
         _spawnerTimer += 1 * Time.deltaTime;
-        if (_spawnerTimer >= spawnRatio && !IsRest)
+        if (_spawnerTimer >= _spawnRatio && !IsRest)
         {
             return true;
         }

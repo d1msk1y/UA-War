@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5326827215016251704}
   - component: {fileID: 7575729543036796734}
-  - component: {fileID: 822530642775298950}
+  - component: {fileID: 7334363078582929141}
   m_Layer: 0
   m_Name: blood puddle
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &822530642775298950
+--- !u!95 &7334363078582929141
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 6063238246728089763}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f105b12aefec3c41b969c0938f13172, type: 2}
+  m_Controller: {fileID: 9100000, guid: df18743cfa51b7a408f797761ded9c8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
