@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545955974936623770}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.36, y: 3.93, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.43755817, y: 0.43755817, z: 0.43755817}
   m_Children:
   - {fileID: 545955975077651316}
@@ -88,7 +88,6 @@ MonoBehaviour:
   legs: {fileID: 545955975077651317}
   aIPath: {fileID: 545955974936623775}
   aIDestinationSetter: {fileID: 0}
-  destinationTarget: {fileID: 0}
   hostageStatement: {fileID: 0}
   deadBody: {fileID: 7723314940800141554, guid: d4943c913a5d3b445adde6a3097bfd74, type: 3}
   gun: {fileID: 545955975327267152}

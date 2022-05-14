@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285b02b14fc5e34458a7774732b82de3, type: 3}
   m_Name: Sand Bags
   m_EditorClassIdentifier: 
-  building: {fileID: 11643576533603058, guid: 27e9e02db53a9af40a05ebc75fa576ae, type: 3}
+  buildingSprite: {fileID: 21300000, guid: 361b4e497febe8b419f32d8a2207ab2b, type: 3}
+  health: 100
+  buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
   price: 100
