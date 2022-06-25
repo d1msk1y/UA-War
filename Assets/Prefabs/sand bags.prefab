@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21710590a9b15294696223132cb330cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingParams: {fileID: 11400000, guid: 8a50b4f5b422de043ab3c55c1dfe4d0a, type: 2}
+  _buildingParams: {fileID: 11400000, guid: 8a50b4f5b422de043ab3c55c1dfe4d0a, type: 2}
   _entityHealth: {fileID: 7003903647365575855}
 --- !u!114 &7003903647365575855
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608ead8a6be20ef47965190d5fb03cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
+  _health: 100
   _maxHealth: 100
   isAlive: 1
   hitParticle: {fileID: 4997856801387539281, guid: 4bd8b02414deae7468371555afaee9b4, type: 3}

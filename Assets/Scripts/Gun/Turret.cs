@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Gun))]
-public class Turret : MonoBehaviour
+public class Turret : AttackBuilding
 {
-    [SerializeField] float _shootingRadius;
+    private float _shootingRadius;
     private EnemySpawner _enemySpawner;
     private Transform _closestEnemy;
 
@@ -15,21 +15,32 @@ public class Turret : MonoBehaviour
     {
         _gun = GetComponent<Gun>();
         _enemySpawner = GameManager.Instance.battleManager.enemySpawner;
+        _shootingRadius = BuildingParams.radius;
     }
 
     private void Update()
     {
-        if (GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Count > 0)
-            _closestEnemy = GetClosestEnemy();
-        else return;
+        if (!TryGetClosestEnemy())
+            return;
+
         if (Vector3.Distance(_closestEnemy.transform.localPosition, transform.position) > _shootingRadius)
             return;
-        Debug.Log(_closestEnemy.transform.localPosition);
+
         Aiming();
         Shoot();
     }
 
     private void Shoot() => _gun.Shoot(_closestEnemy.transform.localPosition);
+
+    private bool TryGetClosestEnemy()
+    {
+        if (GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Count > 0)
+        {
+            _closestEnemy = GetClosestEnemy();
+            return true;
+        }
+        else return false;
+    }
 
     private void Aiming()
     {

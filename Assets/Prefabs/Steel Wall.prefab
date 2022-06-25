@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608ead8a6be20ef47965190d5fb03cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
-  _maxHealth: 0
+  _health: 200
+  _maxHealth: 200
   isAlive: 1
   hitParticle: {fileID: 7010058423268155270, guid: 8bae2a5bc0597cf4481ff5b7499642e8, type: 3}
   onDie:

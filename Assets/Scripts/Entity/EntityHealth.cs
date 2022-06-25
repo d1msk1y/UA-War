@@ -42,6 +42,10 @@ public class EntityHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (damage < 0)
+        {
+            Debug.LogWarning("Received damage < 0");
+        }
         _health -= damage;
         onDamageEvent?.Invoke();
         isAlive = IsEntityAlive();

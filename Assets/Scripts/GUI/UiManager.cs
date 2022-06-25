@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private GameObject _hud;
     [SerializeField] private TextMeshProUGUI _coinsText;
+    public GameObject _damageText;
 
     [Header("GUI")]
     [SerializeField] private Button _startButton;
@@ -42,6 +43,8 @@ public class UiManager : MonoBehaviour
 
         Destroy(uiText, uiText.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
+
+    public void DisplayDamage(Vector3 position, string text) => SetNewGUIText(_damageText, position, text);
 
     public void ToggleShop() => GameManager.Instance.shopManager.ToggleShop();
     public void ToggleHostages() => Debug.Log("Hostages toggled");

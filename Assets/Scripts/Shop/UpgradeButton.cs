@@ -4,17 +4,14 @@ using UnityEngine.UI;
 using TMPro;
 
 [RequireComponent(typeof(Button))]
-public class UpgradeButton : MonoBehaviour
+public class UpgradeButton : ShopButton
 {
     [Header("Parameters")]
     private int _stage;//current upgrade stage
-    private int _price;
     [SerializeField] private UpgradeSO _upgradeSO;
 
     [Header("GFX")]
     [SerializeField] private TextMeshProUGUI _stageText;
-    [SerializeField] private TextMeshProUGUI _priceText;
-    private Button _button;
 
     private float _upgradeValue;//nextUpgrade
     public float UpgradeValue { get { return _upgradeValue; } set { _upgradeValue = value; } }
@@ -22,33 +19,32 @@ public class UpgradeButton : MonoBehaviour
     public delegate void UpgradesHandler(int a);
     public UnityEvent OnUpgrade;
 
-    private void Start()
+    internal override void Start()
     {
-        SetButton();
         _price = _upgradeSO.price;
-        SetGfx();
-        GameManager.Instance.scoreSystem.OnMoneyChange += CheckButtonAbility;
+        base.Start();
+        SetButton();
     }
 
-    private int CalculatedPrice()
+    private int CalculatePrice()
     {
         float multipiedPrice = _price;
         multipiedPrice *= _upgradeSO.priceMultiplier;
         _price = (int)multipiedPrice;
+        SetGfx();
 
         return (int)multipiedPrice;
     }
 
-    private bool WithdrawCoins() => GameManager.Instance.scoreSystem.WithdrawCoins(CalculatedPrice());
+    internal override bool WithdrawCoins() => GameManager.Instance.scoreSystem.WithdrawCoins(CalculatePrice());
     //Cause array lenght doesn't match the latest array obj
     private bool StageInBounds() => _stage < _upgradeSO.upgradeStages.Length - 1;
 
-    private bool TransactionAccepted()
+    internal override bool ValidateTransaction()
     {
         if (!StageInBounds())
         {
             Debug.Log("Upgrade is completely bought");
-            _button.interactable = false;
             DenyTransaction();
             return false;
         }
@@ -63,17 +59,9 @@ public class UpgradeButton : MonoBehaviour
         }
     }
 
-    private void CheckButtonAbility()
-    {
-        if (GameManager.Instance.scoreSystem.TotalCoins < _price)
-            _button.interactable = false;
-        else
-            _button.interactable = true;
-    }
-
     public void Upgrade()
     {
-        if (!TransactionAccepted())
+        if (!ValidateTransaction())
             return;
         _stage++;
         SetGfx();
@@ -81,15 +69,10 @@ public class UpgradeButton : MonoBehaviour
         OnUpgrade?.Invoke();
     }
 
-    private void SetGfx()
+    internal override void SetGfx()
     {
+        base.SetGfx();
         _stageText.text = (_stage + 1) + "/" + _upgradeSO.upgradeStages.Length; // front-end stage serializer
-        _priceText.text = _price.ToString();
-    }
-
-    private void DenyTransaction()
-    {
-        //Some fun gfx stuff to do
     }
 
     private void SetButton()

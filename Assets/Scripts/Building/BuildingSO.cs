@@ -9,6 +9,7 @@ public class BuildingSO : ScriptableObject
     public ParticleSystem buildFX;
 
     [Header("Parameters")]
+    public int heightLimit = 0;
     public int health;
     public int price;
 }

@@ -58,11 +58,8 @@ public class BuildingSystem : MonoBehaviour
 
     private void RotateSelectedItem() => ObjectRotation = new Vector3(0, 0, _objectRotation.z + 90);
 
-    public void SelectItem(BuildingStuff item)
+    public void SelectBuilding(BuildingStuff item)
     {
-        if (!GameManager.Instance.scoreSystem.WithdrawCoins(item.buildingParams.price))
-            return;
-
         SelectedObject = item;
         _cursor.SetCursor(item);
         GameManager.Instance.shopManager.ToggleShop();

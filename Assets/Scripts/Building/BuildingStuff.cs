@@ -5,16 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(EntityHealth))]
 public class BuildingStuff : MonoBehaviour
 {
-    public BuildingSO buildingParams;
+    [SerializeField] private BuildingSO _buildingParams;
+
+    public virtual BuildingSO BuildingParams
+    {
+        get => _buildingParams;
+        set => _buildingParams = value;
+    }
+
     [SerializeField] private EntityHealth _entityHealth;
 
     private void OnEnable()
     {
-        Instantiate(buildingParams.buildFX, transform.position, Quaternion.identity);
+        Instantiate(BuildingParams.buildFX, transform.position, Quaternion.identity);
         _entityHealth.onDieEvent += ScanAStar;
         GameManager.Instance.Astar.Scan();
 
-        _entityHealth.MaxHealth = buildingParams.health;
+        _entityHealth.MaxHealth = BuildingParams.health;
     }
 
     private void ScanAStar() => GameManager.Instance.Astar.Scan();

@@ -93,6 +93,12 @@ public class Gun : MonoBehaviour
         }
     }
 
+    private int GetRandomDamage()
+    {
+        int randomDamage = (int)(gunConfig.damage * Random.Range(0.8f, 2));
+        return randomDamage;
+    }
+
     private void ShootingRaycast(RaycastHit2D raycastHit)
     {
         if (raycastHit.collider != null)
@@ -101,10 +107,17 @@ public class Gun : MonoBehaviour
 
     private void GiveDamage(GameObject damagedEntity, RaycastHit2D raycastHit)
     {
-        EntityHealth target = damagedEntity.GetComponent<EntityHealth>();
-        if (target == null)
-            return;
-        target.TakeDamage((int)(gunConfig.damage * damageMultiplier));
-        CreateParticle(target.hitParticle);
+        if (damagedEntity.TryGetComponent(out EntityHealth entity))
+        {
+            int randomDamage = (int)(GetRandomDamage() * damageMultiplier);
+            EntityHealth target = entity;
+            target.TakeDamage(randomDamage);
+            DisplayDamage(raycastHit.point, randomDamage);
+            CreateParticle(target.hitParticle);
+        }
     }
+
+    private void DisplayDamage(Vector2 position, int damage)
+    => GameManager.Instance.uiManager.DisplayDamage(position, damage.ToString());
+
 }
