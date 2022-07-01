@@ -41,27 +41,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -93,11 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -45.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 89
+      value: -109.880005
       objectReference: {fileID: 0}
     - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380134, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7853398604273385593}
     - target: {fileID: 1092615332364380135, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_FillCenter
       value: 1
@@ -127,5 +131,36 @@ PrefabInstance:
       propertyPath: m_text
       value: 300
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2352784696713016209, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+--- !u!1 &4860398330401199116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1092615332364380132, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+  m_PrefabInstance: {fileID: 5501750974937461736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8522589754115738082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4187353036667861514, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+  m_PrefabInstance: {fileID: 5501750974937461736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7853398604273385593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860398330401199116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5315351b17e1349a5714e285bf887a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priceText: {fileID: 8522589754115738082}
+  _building: {fileID: 5720900406554164955, guid: 6224a17887d75c74f8b4feacf1611f92, type: 3}

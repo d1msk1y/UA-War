@@ -12,11 +12,16 @@ public class Enemy : Actor
     [SerializeField] internal EnemySO enemyParams;
 
     [Header("Extra references")]
-    public GameObject legs;
+    [SerializeField] private GameObject _legs;
+    [SerializeField] private Sprite _escapingBody;
 
     [Header("Base References")]
     [SerializeField] internal AIPath aIPath;
     [SerializeField] internal AIDestinationSetter aIDestinationSetter;
+    private EntityScanner _entityScanner;
+    private SpriteRenderer _bodyRenderer;
+
+    private Transform DestractionTarget { get => destractionTarget.transform; }
     internal Transform DestinationTarget
     {
         get
@@ -29,6 +34,7 @@ public class Enemy : Actor
             aIDestinationSetter.target = value;
         }
     }
+    internal EntityHealth destractionTarget;
 
     [SerializeField] internal Hostage hostageStatement;
     [SerializeField] internal GameObject deadBody;
@@ -38,22 +44,26 @@ public class Enemy : Actor
 
     protected void Start()
     {
+        _entityScanner = new EntityScanner(enemyParams.radius, enemyParams.targetMask, transform);
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
+        _bodyRenderer = body.GetComponentInChildren<SpriteRenderer>();
+        GameManager.Instance.OnGridChange += SetDestractionTarget;
         GameManager.Instance.battleManager.OnRest += Escape;
     }
 
     private void Update()
     {
-        if (DestinationTarget == null)
+        if (DestinationTarget == null || destractionTarget == null)
             return;
 
-        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
-        legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
+        _legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
+        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destractionTarget.transform));
 
-        if (!TargetInRadius())
-            return;
-        Attack();
+        if (TargetInRadius())
+            Attack();
     }
+
+    internal void SetDestractionTarget() => destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
 
     public void Die()
     {
@@ -66,9 +76,20 @@ public class Enemy : Actor
     internal virtual void Escape()
     {
         DestinationTarget = GameManager.Instance.battleManager.enemySpawner.escapePoint;
-        aIPath.maxSpeed = enemyParams.escapeSpeed;
+        destractionTarget = null;
 
+        SetEscapeDestination();
+        _bodyRenderer.sprite = _escapingBody;
+
+        aIPath.maxSpeed = enemyParams.escapeSpeed;
         Invoke("Die", 9);
+    }
+
+    private void SetEscapeDestination()
+    {
+        Transform escapePoint = GameManager.Instance.battleManager.enemySpawner.escapePoint;
+        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(escapePoint));
+        _legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(escapePoint));
     }
 
     private void DropScore()
@@ -79,7 +100,9 @@ public class Enemy : Actor
 
     private bool TargetInRadius()
     {
-        if (Vector2.Distance(transform.position, DestinationTarget.transform.position) > enemyParams.radius)
+        if (destractionTarget == null)
+            return false;
+        if (Vector2.Distance(transform.position, destractionTarget.transform.position) > enemyParams.radius)
             return false;
         else
             return true;

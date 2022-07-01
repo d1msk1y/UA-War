@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 1092615332364380128}
   - component: {fileID: 1092615332364380135}
   - component: {fileID: 1092615332364380134}
+  - component: {fileID: 2352784696713016209}
   m_Layer: 5
   m_Name: 0_Building thumbnail_Shop
   m_TagString: Untagged
@@ -350,18 +351,32 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
-        m_MethodName: SelectItem
-        m_Mode: 2
+      - m_Target: {fileID: 2352784696713016209}
+        m_TargetAssemblyTypeName: BuildingButton, Assembly-CSharp
+        m_MethodName: SelectBuilding
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1922351932858652710, guid: 27e9e02db53a9af40a05ebc75fa576ae, type: 3}
-          m_ObjectArgumentAssemblyTypeName: BuildingStuff, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2352784696713016209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092615332364380132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5315351b17e1349a5714e285bf887a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priceText: {fileID: 0}
+  _building: {fileID: 0}
 --- !u!1 &1092615333076791442
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sand Bags
+  m_text: Explosive Barrel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03491c5b719f1be42b422a2a22b4e64d, type: 2}
   m_sharedMaterial: {fileID: -1118850561651084727, guid: 03491c5b719f1be42b422a2a22b4e64d, type: 2}
@@ -454,8 +469,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 28.1
+  m_fontSizeBase: 28.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -466,7 +481,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30.9
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

@@ -7,13 +7,16 @@ public class Turret : AttackBuilding
 {
     private float _shootingRadius;
     private EnemySpawner _enemySpawner;
-    private Transform _closestEnemy;
+    private EntityHealth _closestEnemy;
+
+    private EntityScanner _entityScanner;
 
     private Gun _gun;
 
     private void Start()
     {
         _gun = GetComponent<Gun>();
+        _entityScanner = new EntityScanner(_shootingRadius, BaseController.instance.targetMask, transform);
         _enemySpawner = GameManager.Instance.battleManager.enemySpawner;
         _shootingRadius = BuildingParams.radius;
     }
@@ -34,9 +37,9 @@ public class Turret : AttackBuilding
 
     private bool TryGetClosestEnemy()
     {
-        if (GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Count > 0)
+        _closestEnemy = _entityScanner.GetClosestEntity(_entityScanner.GetEntitiesInRadius());
+        if (GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Count > 0 && _closestEnemy != null)
         {
-            _closestEnemy = GetClosestEnemy();
             return true;
         }
         else return false;
@@ -49,28 +52,6 @@ public class Turret : AttackBuilding
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(0, 0, angle);
-    }
-
-
-    private Transform GetClosestEnemy()
-    {
-        Transform result = null;
-        float num = float.PositiveInfinity;
-        Vector3 position = transform.position;
-        foreach (Transform gameObject in _enemySpawner.currentEnemiesInAction)
-        {
-            if (gameObject == null)
-            {
-                return null;
-            }
-            float num2 = Vector3.Distance(gameObject.transform.position, position);
-            if (num2 < num)
-            {
-                result = gameObject.transform;
-                num = num2;
-            }
-        }
-        return result;
     }
 
     private void OnDrawGizmos()

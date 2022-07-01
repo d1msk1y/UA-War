@@ -40,6 +40,6 @@ public class ShopButton : MonoBehaviour
 
     internal void DenyTransaction()
     {
-        //fun stuff to do
+        GameManager.Instance.ShakeScreen(10);
     }
 }

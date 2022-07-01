@@ -14,9 +14,15 @@ public class Soldier : Enemy
         DestinationTarget = BaseController.instance.transform;
 
         Attack = Shoot;
+
+        SetDestractionTarget();
     }
 
-    private void Shoot() => gun.Shoot(DestinationTarget.position);
+    private void Shoot()
+    {
+        if (destractionTarget != null)
+            gun.Shoot(destractionTarget.transform.position);
+    }
 
     internal override void Escape()
     {

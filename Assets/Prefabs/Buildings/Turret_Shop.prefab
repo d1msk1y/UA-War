@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 1092615332364380134, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7480540407465304721}
+      objectReference: {fileID: 1068748154825162840}
     - target: {fileID: 1092615332364380134, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectBuilding
@@ -167,13 +167,27 @@ PrefabInstance:
       propertyPath: m_text
       value: Auto-Aim gun mount
       objectReference: {fileID: 0}
+    - target: {fileID: 2352784696713016209, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: _building
+      value: 
+      objectReference: {fileID: 8920590667529429016, guid: 2f6e3c203d173e64783126914a1d732b, type: 3}
+    - target: {fileID: 2352784696713016209, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: _priceText
+      value: 
+      objectReference: {fileID: 1472191751703038403}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
---- !u!1 &2403671113608582189 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1092615332364380132, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+--- !u!114 &1068748154825162840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2352784696713016209, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
   m_PrefabInstance: {fileID: 3346792446963528649}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5315351b17e1349a5714e285bf887a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1472191751703038403 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4187353036667861514, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
@@ -185,17 +199,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7480540407465304721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2403671113608582189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5315351b17e1349a5714e285bf887a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _priceText: {fileID: 1472191751703038403}
-  _building: {fileID: 8920590667529429016, guid: 2f6e3c203d173e64783126914a1d732b, type: 3}

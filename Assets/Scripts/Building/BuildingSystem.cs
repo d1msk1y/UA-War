@@ -11,6 +11,7 @@ public class BuildingSystem : MonoBehaviour
     [Header("GFX")]
     [SerializeField] private BuildingCursor _cursor;
 
+
     public BuildingStuff selectedObject;
     public BuildingStuff SelectedObject
     {
@@ -87,7 +88,9 @@ public class BuildingSystem : MonoBehaviour
 
     private bool IsAbleToSpawn()
     {
-        bool abilityBool = _cursor.transform.position.y > 0 || SelectedObject == null;
+        if (SelectedObject == null)
+            return false;
+        bool abilityBool = _cursor.transform.position.y > SelectedObject.BuildingParams.heightLimit;
         if (abilityBool || _cursor.CheckOverlapping(overlappingFilter))
         {
             _cursor.SetColor(0);

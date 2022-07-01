@@ -78,9 +78,6 @@ public class UpgradeButton : ShopButton
     private void SetButton()
     {
         _button = GetComponentInChildren<Button>();
-        _button.onClick.AddListener(() =>
-        {
-            Upgrade();
-        });
+        _button.onClick.AddListener(() => { Upgrade(); });
     }
 }

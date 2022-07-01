@@ -57,7 +57,6 @@ public class EntityHealth : MonoBehaviour
         {
             onDie?.Invoke();
             onDieEvent?.Invoke();
-            Destroy(gameObject);
             return false;
         }
         else

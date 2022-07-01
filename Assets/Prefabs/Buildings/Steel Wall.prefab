@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608ead8a6be20ef47965190d5fb03cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 200
-  _maxHealth: 200
+  _health: 400
+  _maxHealth: 400
   isAlive: 1
   hitParticle: {fileID: 7010058423268155270, guid: 8bae2a5bc0597cf4481ff5b7499642e8, type: 3}
   onDie:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21710590a9b15294696223132cb330cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingParams: {fileID: 11400000, guid: df27bca57bf2ed34ca7ebd246ff073c3, type: 2}
+  _buildingParams: {fileID: 11400000, guid: df27bca57bf2ed34ca7ebd246ff073c3, type: 2}
   _entityHealth: {fileID: 5720900406554164954}
 --- !u!60 &6805129383177578538
 PolygonCollider2D:

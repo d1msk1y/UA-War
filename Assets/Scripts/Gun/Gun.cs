@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour
         if (!_itCanShoot)
             return;
         Ammos -= 1;
-        gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 20, targetMask);
+        gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 40, targetMask);
 
         OnShootEvent?.Invoke();
         StartCoroutine(gunFxSetter.ShotFX(gunFxSetter.SetVFX(aimPos)));

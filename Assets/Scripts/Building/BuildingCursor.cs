@@ -12,7 +12,7 @@ public class BuildingCursor : MonoBehaviour
 
     private void Start()
     {
-        _collider = GetComponent<PolygonCollider2D>();
+        _collider = GetComponentInChildren<PolygonCollider2D>();
         _attackRangeSetter = GetComponent<AttackRangeSetter>();
         overlappingColliders = new Collider2D[1];
     }
@@ -34,8 +34,6 @@ public class BuildingCursor : MonoBehaviour
     {
         if (buildingStuff.TryGetComponent(out AttackBuilding attackBuilding))
         {
-            // Debug.Log(attackBuilding.buildingParams.health);
-            // Debug.Log(attackBuilding.buildingParams.radius);
             _attackRangeSetter.DisplayRange(attackBuilding.BuildingParams.radius);
         }
     }

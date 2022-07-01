@@ -8,12 +8,19 @@ public class Explosive : MonoBehaviour
     [SerializeField] private LayerMask _vulnerable;
     [SerializeField] private float _explosionRadius;
     [SerializeField] private int _startDamage;
+    private EntityScanner _entityScanner;
+
+    private void Start()
+    {
+        _entityScanner = new EntityScanner(_explosionRadius, _vulnerable, transform);
+    }
 
     public void Explode()
     {
-        foreach (EntityHealth entity in GetEntitiesInRadius())
+        foreach (EntityHealth entity in _entityScanner.GetEntitiesInRadius())
         {
             entity.TakeDamage(_startDamage);
+            GameManager.Instance.ShakeScreen(20);
         }
     }
 
@@ -22,25 +29,5 @@ public class Explosive : MonoBehaviour
         float entityDistance = Vector2.Distance(transform.position, entity.transform.position);
         float damageMultiplier = entityDistance / _explosionRadius;
         return (int)(_startDamage * damageMultiplier);
-    }
-
-    public List<EntityHealth> GetEntitiesInRadius()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _vulnerable);
-
-        return CheckEntities(colliders);
-    }
-
-    private List<EntityHealth> CheckEntities(Collider2D[] colliders)
-    {
-        List<EntityHealth> entities = new List<EntityHealth>();
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.TryGetComponent(out EntityHealth entityHealth))
-            {
-                entities.Add(entityHealth);
-            }
-        }
-        return entities;
     }
 }
