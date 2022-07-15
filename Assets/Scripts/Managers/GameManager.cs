@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using EZCameraShake;
 using Pathfinding;
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public BattleManager battleManager;
     public ShopManager shopManager;
     public UiManager uiManager;
-    public SoundManager soundManager;
+    public AudioManager soundManager;
     public ScoreSystem scoreSystem;
     public BuildingSystem buildingSystem;
     public UpgradeSystem upgradeSystem;
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ShakeScreen(float power)

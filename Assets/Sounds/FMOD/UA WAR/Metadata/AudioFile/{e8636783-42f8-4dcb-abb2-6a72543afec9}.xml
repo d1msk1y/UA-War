@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e8636783-42f8-4dcb-abb2-6a72543afec9}">
+		<property name="assetPath">
+			<value>Sounds/sfx/Gun/ES_Bullet Impact Wood.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.504</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{220b2eea-b21f-4267-bd49-bd8386312cb9}</destination>
+		</relationship>
+	</object>
+</objects>

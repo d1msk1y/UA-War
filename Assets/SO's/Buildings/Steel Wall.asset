@@ -9,14 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285b02b14fc5e34458a7774732b82de3, type: 3}
+  m_Script: {fileID: 11500000, guid: fe99b1837a9605c449d91038242e4340, type: 3}
   m_Name: Steel Wall
   m_EditorClassIdentifier: 
-  buildingSprite: {fileID: 21300000, guid: 701a75de176b2df4e94081c3f992182c, type: 3}
+  buildSFX:
+    Guid:
+      Data1: 639851594
+      Data2: 1279621532
+      Data3: -267558762
+      Data4: -242855933
+    Path: event:/SFX/Buildings/sfx_build_default
+  destroySFX:
+    Guid:
+      Data1: -549298112
+      Data2: 1179949325
+      Data3: -1258611793
+      Data4: -1203226964
+    Path: event:/SFX/Buildings/sfx_destroy_metal
+  hitSFX:
+    Guid:
+      Data1: -2107852668
+      Data2: 1149029396
+      Data3: 267735694
+      Data4: -151369815
+    Path: event:/SFX/Weapons/Impact/sfx_metal
+  sprites:
+  - {fileID: 21300000, guid: 701a75de176b2df4e94081c3f992182c, type: 3}
+  angles: 00000000
   destroyedSprite: {fileID: 0}
   buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
   revivementCanvas: {fileID: 3822570251327219008, guid: 6c18d13d072359447b64e3537d6782fc, type: 3}
   heightLimit: 0
-  revievementTime: 5
+  revievementTime: 0
   health: 300
   price: 200

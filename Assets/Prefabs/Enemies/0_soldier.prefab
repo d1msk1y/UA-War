@@ -106,7 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 0
   _maxHealth: 75
-  isAlive: 1
   hitParticle: {fileID: 5136225918215915380, guid: dd228d6b1db78444991b29615535255d, type: 3}
   onDie:
     m_PersistentCalls:
@@ -179,7 +178,7 @@ MonoBehaviour:
   radius: 1.66
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 1.5
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2

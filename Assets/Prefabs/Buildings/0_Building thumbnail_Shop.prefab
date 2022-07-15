@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1092615332364380128}
   - component: {fileID: 1092615332364380135}
   - component: {fileID: 1092615332364380134}
-  - component: {fileID: 2352784696713016209}
+  - component: {fileID: 5484465788856169761}
   m_Layer: 5
   m_Name: 0_Building thumbnail_Shop
   m_TagString: Untagged
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2352784696713016209}
+      - m_Target: {fileID: 5484465788856169761}
         m_TargetAssemblyTypeName: BuildingButton, Assembly-CSharp
         m_MethodName: SelectBuilding
         m_Mode: 1
@@ -363,7 +363,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2352784696713016209
+--- !u!114 &5484465788856169761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,11 +372,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092615332364380132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5315351b17e1349a5714e285bf887a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5daa9b705ab3ede499453a139f6922a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priceText: {fileID: 0}
-  _building: {fileID: 0}
+  _priceText: {fileID: 4187353036667861514}
+  _entity: {fileID: 1922351932858652710, guid: 27e9e02db53a9af40a05ebc75fa576ae, type: 3}
 --- !u!1 &1092615333076791442
 GameObject:
   m_ObjectHideFlags: 0

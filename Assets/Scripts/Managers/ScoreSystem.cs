@@ -41,6 +41,7 @@ public class ScoreSystem : MonoBehaviour
         else
         {
             TotalCoins -= coins;
+            GameManager.Instance.soundManager.PlaySoundEvent(GameManager.Instance.soundManager.withdraw);
             return true;
         }
     }

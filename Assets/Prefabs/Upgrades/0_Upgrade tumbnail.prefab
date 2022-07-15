@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 3132490229952364089}
   - component: {fileID: 1080573318464907172}
   - component: {fileID: 8750002190255287504}
+  - component: {fileID: 2275068908619149775}
   m_Layer: 5
   m_Name: 0_Upgrade tumbnail
   m_TagString: Untagged
@@ -715,7 +716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8874979228603820959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2275068908619149775}
+        m_TargetAssemblyTypeName: PlayGenericOneshot, Assembly-CSharp
+        m_MethodName: PlaySoundEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8750002190255287504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,12 +741,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23324e41a1d7e845b590c9b31fbcf77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _priceText: {fileID: 2183436552287675350}
   _upgradeSO: {fileID: 0}
   _stageText: {fileID: 6445364885783107919}
-  _priceText: {fileID: 2183436552287675350}
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2275068908619149775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3132490229952364088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969974be82a243241813a3804a1716e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEvent:
+    Guid:
+      Data1: 575436407
+      Data2: 1255107318
+      Data3: -681776718
+      Data4: -1551169555
+    Path: event:/SFX/UI/Shop/Withdraw
+  _playOnStart: 0
 --- !u!1 &4730859558619931950
 GameObject:
   m_ObjectHideFlags: 0

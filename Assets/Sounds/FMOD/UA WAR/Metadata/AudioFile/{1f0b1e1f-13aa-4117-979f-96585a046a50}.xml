@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1f0b1e1f-13aa-4117-979f-96585a046a50}">
+		<property name="assetPath">
+			<value>Soundtracks/Ukraine_Anthem_Instrument.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>79.632000000000005</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{220b2eea-b21f-4267-bd49-bd8386312cb9}</destination>
+		</relationship>
+	</object>
+</objects>

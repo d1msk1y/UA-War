@@ -31,7 +31,7 @@ public class BaseController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (GameManager.Instance.buildingSystem.SelectedObject || EventSystem.current.IsPointerOverGameObject())
+            if (GameManager.Instance.buildingSystem.SelectedObject != null || EventSystem.current.IsPointerOverGameObject())
                 return;
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 CheckAmmo();
@@ -44,6 +44,7 @@ public class BaseController : MonoBehaviour
         if (gun.Ammos <= 0)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GameManager.Instance.soundManager.PlaySoundEvent(gun.gunConfig.noAmmo);
             GameManager.Instance.uiManager.SetNewGUIText(GameManager.Instance.uiManager._gunTxt, mousePos, "RELOAING!");
         }
     }

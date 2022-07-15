@@ -53,7 +53,7 @@ public class Gun : MonoBehaviour
     private void CreateParticle(ParticleSystem particleSystem)
     => Instantiate(particleSystem, gunRaycast.point, Quaternion.identity);
 
-    private int ExtraAmmos()
+    private int GetExtraAmmos()
     {
         float extraAmmos = gunConfig.ammos;
         extraAmmos -= extraAmmos * extraAmmosPercent;
@@ -64,20 +64,32 @@ public class Gun : MonoBehaviour
     private IEnumerator Reload()
     {
         yield return new WaitForSeconds(gunConfig.reloadingTime);
-        Ammos = gunConfig.ammos + ExtraAmmos();
+        GameManager.Instance.soundManager.PlaySoundEvent(gunConfig.reloading);
+        Ammos = gunConfig.ammos + GetExtraAmmos();
     }
 
     public void Shoot(Vector3 aimPos)
     {
-        if (!_itCanShoot)
+        if (!CheckAbility(aimPos))
             return;
-        Ammos -= 1;
-        gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 40, targetMask);
 
+        GameManager.Instance.soundManager.PlaySoundEvent(gunConfig.shot);
         OnShootEvent?.Invoke();
         StartCoroutine(gunFxSetter.ShotFX(gunFxSetter.SetVFX(aimPos)));
         ShootingRaycast(gunRaycast);
         StartCoroutine(StartShootingTimer());
+    }
+
+    private bool CheckAbility(Vector3 aimPos)
+    {
+        if (!_itCanShoot)
+            return false;
+        else
+        {
+            Ammos -= 1;
+            gunRaycast = Physics2D.Raycast(firePos.position, aimPos - transform.position, 40, targetMask);
+            return true;
+        }
     }
 
     private IEnumerator StartShootingTimer()
@@ -119,5 +131,4 @@ public class Gun : MonoBehaviour
 
     private void DisplayDamage(Vector2 position, int damage)
     => GameManager.Instance.uiManager.DisplayDamage(position, damage.ToString());
-
 }

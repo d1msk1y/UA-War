@@ -9,11 +9,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285b02b14fc5e34458a7774732b82de3, type: 3}
+  m_Script: {fileID: 11500000, guid: fe99b1837a9605c449d91038242e4340, type: 3}
   m_Name: Sand Bags
   m_EditorClassIdentifier: 
-  buildingSprite: {fileID: 21300000, guid: 361b4e497febe8b419f32d8a2207ab2b, type: 3}
-  destroyedSprite: {fileID: 0}
+  buildSFX:
+    Guid:
+      Data1: 639851594
+      Data2: 1279621532
+      Data3: -267558762
+      Data4: -242855933
+    Path: event:/SFX/Buildings/sfx_build_default
+  destroySFX:
+    Guid:
+      Data1: 89158331
+      Data2: 1109472635
+      Data3: 985253001
+      Data4: 1645398601
+    Path: event:/SFX/Buildings/sfx_destroy_sandbags
+  hitSFX:
+    Guid:
+      Data1: -856001286
+      Data2: 1152482942
+      Data3: 1665884329
+      Data4: -369835824
+    Path: event:/SFX/Weapons/Impact/sfx_default
+  sprites:
+  - {fileID: 21300000, guid: 361b4e497febe8b419f32d8a2207ab2b, type: 3}
+  - {fileID: 21300000, guid: 02161132f21565d4fb4f7f555dfc67db, type: 3}
+  angles: 000000005a000000
+  destroyedSprite: {fileID: 21300000, guid: 7256e1e4589428f4fb9657cb0a8bf477, type: 3}
   buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
   revivementCanvas: {fileID: 3822570251327219008, guid: 6c18d13d072359447b64e3537d6782fc, type: 3}
   heightLimit: 0

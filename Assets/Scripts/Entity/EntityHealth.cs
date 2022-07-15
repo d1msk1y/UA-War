@@ -8,7 +8,6 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
-    public bool isAlive = true;
 
     [Header("Health")]
     public ParticleSystem hitParticle;
@@ -48,15 +47,17 @@ public class EntityHealth : MonoBehaviour
         }
         _health -= damage;
         onDamageEvent?.Invoke();
-        isAlive = IsEntityAlive();
+        IsEntityAlive();
     }
 
     private bool IsEntityAlive()
     {
-        if (_health < 0)
+        if (_health <= 0)
         {
             onDie?.Invoke();
             onDieEvent?.Invoke();
+            GameManager.Instance.ScanAStar();
+            Destroy(gameObject);
             return false;
         }
         else

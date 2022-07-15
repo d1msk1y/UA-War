@@ -41,5 +41,6 @@ public class ShopButton : MonoBehaviour
     internal void DenyTransaction()
     {
         GameManager.Instance.ShakeScreen(10);
+        AudioManager.Instance.PlaySoundEvent(AudioManager.Instance.rejectSFX);
     }
 }

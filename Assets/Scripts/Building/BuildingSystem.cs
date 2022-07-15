@@ -8,37 +8,51 @@ public class BuildingSystem : MonoBehaviour
     public ContactFilter2D overlappingFilter;
     public float extraHealthPercent = 1;
 
+    private int _rotationIndex;
+    private Vector3 _objectRotation;
+    public Entity _selectedObject;
+
     [Header("GFX")]
-    [SerializeField] private BuildingCursor _cursor;
+    [SerializeField] private EntityCursor _cursor;
 
+    #region Properties
 
-    public BuildingStuff selectedObject;
-    public BuildingStuff SelectedObject
+    public int RotationIndex
     {
-        get
-        {
-            return selectedObject;
-        }
+        get => _rotationIndex;
         set
         {
-            selectedObject = value;
-            if (selectedObject == null)
+            if (value >= SelectedObject.BuildingParams.angles.Length)
+            {
+                _rotationIndex = 0;
+            }
+            else
+            {
+                _rotationIndex = value;
+            }
+        }
+    }
+    public Entity SelectedObject
+    {
+        get => _selectedObject;
+        set
+        {
+            _selectedObject = value;
+            if (_selectedObject == null)
                 return;
         }
     }
-    private Vector3 _objectRotation;
     private Vector3 ObjectRotation
     {
-        get
-        {
-            return _objectRotation;
-        }
+        get => _objectRotation;
         set
         {
             _objectRotation = value;
             _cursor.SetRotation(value);
         }
     }
+
+    #endregion
 
     private void Update()
     {
@@ -48,7 +62,7 @@ public class BuildingSystem : MonoBehaviour
                 Build();
             if (Input.GetKeyDown(KeyCode.Mouse1))
                 RotateSelectedItem();
-            _cursor.UpdatePosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            _cursor.UpdateCursor(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 
@@ -57,32 +71,39 @@ public class BuildingSystem : MonoBehaviour
         IsAbleToSpawn();
     }
 
-    private void RotateSelectedItem() => ObjectRotation = new Vector3(0, 0, _objectRotation.z + 90);
-
-    public void SelectBuilding(BuildingStuff item)
+    public void SelectBuilding(Entity item)
     {
         SelectedObject = item;
+        RotationIndex = 0;
         _cursor.SetCursor(item);
         GameManager.Instance.shopManager.ToggleShop();
     }
 
-    public void Build()
+    private void RotateSelectedItem()
+    {
+        RotationIndex++;
+        ObjectRotation = new Vector3(0, 0, SelectedObject.BuildingParams.angles[RotationIndex]);
+    }
+
+
+    private void Build()
     {
         if (!IsAbleToSpawn())
         {
-
             return;
         }
-        SpawnItem();
         _cursor.HideCursor();
         GameManager.Instance.shopManager.ToggleShop();
+        StartCoroutine(SpawnObject());
     }
 
-    private void SpawnItem()
+    private IEnumerator SpawnObject()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Instantiate(SelectedObject, mousePos, Quaternion.Euler(ObjectRotation));
-        SetBuilding();
+        Entity spawnedObj = Instantiate(SelectedObject, mousePos, Quaternion.Euler(ObjectRotation));
+        // spawnedObj.spriteRenderer.sprite = SelectedObject.BuildingParams.sprites[RotationIndex];
+
+        yield return new WaitForSeconds(0.1f);
         SelectedObject = null;
     }
 
@@ -93,15 +114,13 @@ public class BuildingSystem : MonoBehaviour
         bool abilityBool = _cursor.transform.position.y > SelectedObject.BuildingParams.heightLimit;
         if (abilityBool || _cursor.CheckOverlapping(overlappingFilter))
         {
-            _cursor.SetColor(0);
+            _cursor.SetColor(0);//0 = false/red
             return false;
         }
         else
         {
-            _cursor.SetColor(1);
+            _cursor.SetColor(1);// 1 = true/green
             return true;
         }
     }
-
-    private void SetBuilding() => SelectedObject.SetExtraHealth(extraHealthPercent);
 }

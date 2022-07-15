@@ -29,6 +29,8 @@ namespace EZCameraShake
         /// </summary>
         public Vector3 RestRotationOffset = new Vector3(0, 0, 0);
 
+        public bool shakeOnStart = false;
+
         Vector3 posAddShake, rotAddShake;
 
         List<CameraShakeInstance> cameraShakeInstances = new List<CameraShakeInstance>();
@@ -37,6 +39,12 @@ namespace EZCameraShake
         {
             Instance = this;
             instanceList.Add(gameObject.name, this);
+        }
+
+        void OnEnable()
+        {
+            if (shakeOnStart)
+                Shake(ShakeOnce(10, 10f, 0.1f, 0.3F));
         }
 
         void Update()

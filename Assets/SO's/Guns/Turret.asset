@@ -13,8 +13,29 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   shotGFX: {fileID: 21300000, guid: 377146b91ba8f13448c4e3b6eb2d11a2, type: 3}
-  damage: 3
-  ammos: 30
+  shot:
+    Guid:
+      Data1: -1570782427
+      Data2: 1139765441
+      Data3: 443764915
+      Data4: 1731485359
+    Path: event:/SFX/Weapons/Shot/sfx_shot_rifle
+  noAmmo:
+    Guid:
+      Data1: 973846791
+      Data2: 1113617148
+      Data3: -1887938673
+      Data4: -222114239
+    Path: event:/SFX/Weapons/No ammo
+  reloading:
+    Guid:
+      Data1: -1364388930
+      Data2: 1100392954
+      Data3: -1166236518
+      Data4: -1791741110
+    Path: event:/SFX/Weapons/Reload
+  damage: 9
+  ammos: 10
   reloadingTime: 3
-  shootingRatio: 0.2
+  shootingRatio: 0.3
   recoilForce: 0
