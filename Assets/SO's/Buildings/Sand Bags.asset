@@ -35,7 +35,6 @@ MonoBehaviour:
     Path: event:/SFX/Weapons/Impact/sfx_default
   sprites:
   - {fileID: 21300000, guid: 361b4e497febe8b419f32d8a2207ab2b, type: 3}
-  - {fileID: 21300000, guid: 02161132f21565d4fb4f7f555dfc67db, type: 3}
   angles: 000000005a000000
   destroyedSprite: {fileID: 21300000, guid: 7256e1e4589428f4fb9657cb0a8bf477, type: 3}
   buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}

@@ -20,9 +20,9 @@ public class Tank : Transport
 
     private bool _itCanShoot;
 
-    private new void Start()
+    private new void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         _target = BaseController.instance.transform;
         SetDestination(_target);
         StartMove();
@@ -30,11 +30,11 @@ public class Tank : Transport
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, _target.position) <= _shootDistance)
-        {
-            _turret.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(_target));
-            Shoot();
-        }
+        // if (Vector2.Distance(transform.position, _target.position) <= _shootDistance)
+        // {
+        //     _turret.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(_target));
+        //     Shoot();
+        // }
 
         if (Vector2.Distance(transform.position, _target.position) <= aIPath.slowdownDistance)
             StopMove();

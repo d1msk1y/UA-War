@@ -63,7 +63,12 @@ public class Enemy : Actor
             Attack();
     }
 
-    internal void SetDestractionTarget() => destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
+    internal void SetDestractionTarget()
+    {
+        if (!TryRaycastToBase())
+            destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
+        else destractionTarget = BaseController.instance.entityHealth;
+    }
 
     public void Die()
     {
@@ -71,6 +76,15 @@ public class Enemy : Actor
             return;
         StartCoroutine(DieCoroutine());
         GetComponent<EntityHealth>().onDieEvent += DropScore;
+    }
+
+    private bool TryRaycastToBase()
+    {
+        RaycastHit2D raycast = Physics2D.Raycast
+        (transform.position, BaseController.instance.transform.position - transform.position, 40, enemyParams.targetMask);
+        if (raycast.collider == BaseController.instance)
+            return true;
+        else return false;
     }
 
     internal virtual void Escape()
@@ -110,16 +124,16 @@ public class Enemy : Actor
 
     private IEnumerator DieCoroutine()
     {
-        gameObject.SetActive(false);
         GameObject deadObj =
         Instantiate(deadBody, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         GameManager.Instance.battleManager.OnRest -= Escape;
         GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Remove(transform);
-
-        yield return new WaitForSeconds(30);
-
-        Destroy(deadObj);
         Destroy(gameObject);
+
+        GameManager.Instance.OnGridChange -= SetDestractionTarget;
+        GameManager.Instance.battleManager.OnRest -= Escape;
+
+        yield return null;
     }
 
     private void OnDrawGizmos()

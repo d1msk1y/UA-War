@@ -236,6 +236,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8920590667529428998}
   _buildingParams: {fileID: 11400000, guid: 26b5fdbcbe2f38f429b6adcfbdf6d094, type: 2}
   _entityHealth: {fileID: 8920590667529429023}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 704
 --- !u!114 &8920590667529429020
 MonoBehaviour:
   m_ObjectHideFlags: 0

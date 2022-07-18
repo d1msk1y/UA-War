@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 545955974936623777}
   - component: {fileID: 545955974936623775}
   - component: {fileID: 545955974936623773}
-  m_Layer: 6
+  - component: {fileID: 5711246022256553065}
+  m_Layer: 7
   m_Name: 0_soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +219,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!50 &5711246022256553065
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545955974936623770}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &545955975077651317
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955975077651316}
   - component: {fileID: 545955975077651319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955975691533543}
   - component: {fileID: 545955975691533542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545955975928933087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Step 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955976028973796}
   - component: {fileID: 545955976028973799}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545955976101278976}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955976147631959}
   - component: {fileID: 545955976147631958}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955976292120693}
   - component: {fileID: 545955976292120692}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545955976543660138}
   - component: {fileID: 545955976543660141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545955976680890176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Step 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,6 +805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 545955976101278976}
     m_Modifications:
+    - target: {fileID: 1354104628954951143, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4655263362247773800, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.403
@@ -790,6 +816,10 @@ PrefabInstance:
     - target: {fileID: 4655263363199217984, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655263363199217984, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4655263363199217987, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
       propertyPath: m_RootOrder
@@ -851,6 +881,10 @@ PrefabInstance:
       propertyPath: gunConfig
       value: 
       objectReference: {fileID: 11400000, guid: 1512f41b354090f4c89f97ab83fc63ff, type: 2}
+    - target: {fileID: 4655263363199218012, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
+      propertyPath: damageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4655263363199218012, guid: ba700bea8b29ea141b1e4e1830d9e52e, type: 3}
       propertyPath: extraAmmosPercent
       value: 1

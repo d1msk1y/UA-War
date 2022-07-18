@@ -8,6 +8,7 @@ public class BaseController : MonoBehaviour
     public Actor character;
     public Gun gun;
     public LayerMask targetMask;
+    public EntityHealth entityHealth;
 
     public static BaseController instance;
 
@@ -19,6 +20,7 @@ public class BaseController : MonoBehaviour
     private void Start()
     {
         gun.targetMask = targetMask;
+        entityHealth = GetComponent<EntityHealth>();
     }
 
     private void Update()

@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7338869695486239376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapons/Tank
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapons/Tank
+  Guid:
+    Data1: -1185835604
+    Data2: 1292916093
+    Data3: -602495048
+    Data4: 1672449504
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6739981835665861530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +178,7 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 637930914219567343
+  lastModified: 637935193068552950
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -188,12 +215,13 @@ MonoBehaviour:
   - {fileID: 5522883599210146860}
   - {fileID: 3058745247144334728}
   - {fileID: 4118943335282142856}
+  - {fileID: -7338869695486239376}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3018008737921570043}
   StringsBanks:
   - {fileID: 437594721609799496}
-  cacheTime: 637930914219567343
+  cacheTime: 637935193068552950
   cacheVersion: 131591
 --- !u!114 &437594721609799496
 MonoBehaviour:
@@ -210,10 +238,10 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637930914219268137
+  lastModified: 637935193068253744
   FileSizes:
   - Name: 
-    Value: 1674
+    Value: 1720
   Exists: 1
 --- !u!114 &999887796268757926
 MonoBehaviour:
@@ -338,7 +366,7 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637930914219248211
+  lastModified: 637935193068233796
   FileSizes: []
   Exists: 1
 --- !u!114 &3058745247144334728

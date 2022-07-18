@@ -6,13 +6,15 @@ using Pathfinding;
 [RequireComponent(typeof(AIPath))]
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(AIDestinationSetter))]
-
+[RequireComponent(typeof(EntityHealth))]
+[RequireComponent(typeof(Explosive))]
 abstract public class Transport : MonoBehaviour
 {
     [Header("Components")]
     internal AIPath aIPath;
     internal AIDestinationSetter aIDestinationSetter;
     internal EntityHealth entityHealth;
+    internal Explosive explosive;
 
     [Header("Transport parameters")]
     [SerializeField] internal float _speed;
@@ -27,14 +29,24 @@ abstract public class Transport : MonoBehaviour
     internal event TransportHandler OnStopMove;
     internal event TransportHandler OnStartMove;
 
-    internal virtual void Start()
+    internal virtual void OnEnable()
     {
         aIPath = GetComponent<AIPath>();
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
         entityHealth = GetComponent<EntityHealth>();
+        SetDestination(BaseController.instance.transform);
         entityHealth.onDieEvent += Detonate;
 
         aIPath.maxSpeed = _speed;
+        StartMove();
+    }
+
+    internal void Escape()
+    {
+        SetDestination(GameManager.Instance.battleManager.enemySpawner.escapePoint);
+        StartMove();
+
+        Destroy(gameObject, 9);
     }
 
     internal virtual void StartMove()
@@ -55,6 +67,7 @@ abstract public class Transport : MonoBehaviour
     internal virtual void Detonate()
     {
         Instantiate(detonatedBody, transform.position, Quaternion.Euler(transform.eulerAngles));
+        explosive.Explode();
         entityHealth.CreateParticle(explosionFXs[Random.Range(0, explosionFXs.Length)]);
         gameObject.SetActive(false);
         GameManager.Instance.ScanAStar();

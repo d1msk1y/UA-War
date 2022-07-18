@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(EntityHealth))]
 public class Explosive : MonoBehaviour
 {
-    [HideInInspector] public float explosionRadius;
+    public float explosionRadius;
     [SerializeField] private int _startDamage;
     public EntityScanner entityScanner;
 
@@ -23,5 +23,11 @@ public class Explosive : MonoBehaviour
         float entityDistance = Vector2.Distance(transform.position, entity.transform.position);
         float damageMultiplier = entityDistance / explosionRadius;
         return (int)(_startDamage * damageMultiplier);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

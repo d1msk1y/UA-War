@@ -12,31 +12,28 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     public ParticleSystem hitParticle;
 
+    public int Health { get => _health; set => _health = value; }
     public int MaxHealth
     {
-        get
-        {
-            return _maxHealth;
-        }
-
+        get => _maxHealth;
         set
         {
             _maxHealth = value;
-            _health = value;
+            Health = value;
         }
     }
 
     public UnityEvent onDie;
 
-    public delegate void EntityHandler();
-    public event EntityHandler onDamageEvent;
-    public event EntityHandler onDieEvent;
+    public delegate void EntityHealthHandler();
+    public event EntityHealthHandler onDamageEvent;
+    public event EntityHealthHandler onDieEvent;
 
     public void CreateParticle(ParticleSystem FX) => Instantiate(FX, transform.position, Quaternion.identity);
 
     private void Start()
     {
-        _health = _maxHealth;
+        Health = _maxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -45,14 +42,14 @@ public class EntityHealth : MonoBehaviour
         {
             Debug.LogWarning("Received damage < 0");
         }
-        _health -= damage;
+        Health -= damage;
         onDamageEvent?.Invoke();
         IsEntityAlive();
     }
 
     private bool IsEntityAlive()
     {
-        if (_health <= 0)
+        if (Health <= 0)
         {
             onDie?.Invoke();
             onDieEvent?.Invoke();

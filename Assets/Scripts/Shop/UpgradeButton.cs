@@ -30,8 +30,6 @@ public class UpgradeButton : ShopButton
     {
         float multipiedPrice = _price;
         multipiedPrice *= _upgradeSO.priceMultiplier;
-        _price = (int)multipiedPrice;
-        SetGfx();
 
         return (int)multipiedPrice;
     }
@@ -42,19 +40,15 @@ public class UpgradeButton : ShopButton
 
     internal override bool ValidateTransaction()
     {
-        if (!StageInBounds())
-        {
-            Debug.Log("Upgrade is completely bought");
-            DenyTransaction();
-            return false;
-        }
-        else if (!WithdrawCoins())
+        if (!StageInBounds() || !WithdrawCoins())
         {
             DenyTransaction();
             return false;
         }
         else
         {
+            _price = (int)CalculatePrice();
+            SetGfx();
             return true;
         }
     }

@@ -9,8 +9,11 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawners;
     public Transform escapePoint;
     private float _spawnerTimer;
-    [SerializeField] private GameObject[] enemiesToSpawn;
     [SerializeField] private float _spawnRatio;
+
+    [Header("Chances")]
+    [SerializeField] private GameObject[] enemiesToSpawn;
+    [SerializeField] private int[] rarenessChance = { 40, 30, 20, 10 };
 
     [Header("Complexity")]
     [SerializeField] private float _coplexityModifier;
@@ -25,14 +28,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (ReadyToSpawn())
         {
-            SpawnEnemy(RandomEnemy());
+            SpawnEnemy(GetRandomEnemy());
         }
     }
 
-    private GameObject RandomEnemy()
+    #region  Complexity
+    public void IncreaseSpawnRatio()
     {
-        GameObject selectedEnemy = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
-        return selectedEnemy;
+        if (_spawnRatio <= _minSpawnRatio)
+            return;
+
+        _spawnRatio -= _coplexityModifier;
     }
 
     private bool ReadyToSpawn()
@@ -47,14 +53,36 @@ public class EnemySpawner : MonoBehaviour
         else
             return false;
     }
+    #endregion
 
-    public void IncreaseSpawnRatio()
+    #region Raindomizer
+    private GameObject GetRandomEnemy()
     {
-        if (_spawnRatio <= _minSpawnRatio)
-            return;
+        GameObject selectedEnemy = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
+        int chance = Random.Range(0, CalculateTotalChance());
 
-        _spawnRatio -= _coplexityModifier;
+        for (int i = 0; i < rarenessChance.Length; i++)
+        {
+            if (chance <= rarenessChance[i])
+            {
+                selectedEnemy = enemiesToSpawn[i];
+                return selectedEnemy;
+            }
+            else chance -= rarenessChance[i];
+        }
+        return selectedEnemy;
     }
+
+    private int CalculateTotalChance()
+    {
+        int calculatedTotalChance = 0;
+        foreach (int item in rarenessChance)
+        {
+            calculatedTotalChance += item;
+        }
+        return calculatedTotalChance;
+    }
+    #endregion
 
     private void SpawnEnemy(GameObject toSpawn)
     {

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ActionEntity : Entity
 {
+    public LayerMask targetMask;
     public new DamageBuildingSO BuildingParams
     {
         get => (DamageBuildingSO)base.BuildingParams;
@@ -14,7 +15,7 @@ public class ActionEntity : Entity
     internal override void OnEnable()
     {
         base.OnEnable();
-        _entityScanner = new EntityScanner(BuildingParams.attackRadius, BaseController.instance.targetMask, transform);
+        _entityScanner = new EntityScanner(BuildingParams.attackRadius, targetMask, transform);
     }
 
     internal virtual void Action()

@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1080573318464907172, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3132490228927231338, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 8.099998
+      objectReference: {fileID: 0}
     - target: {fileID: 3132490229547741386, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 146.7593
@@ -57,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d324ba8adc43b144ab81b0ca796bc4bb, type: 3}
     - target: {fileID: 3132490229952364088, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
       propertyPath: m_Name
-      value: Ammos (1)
+      value: Ammos
       objectReference: {fileID: 0}
     - target: {fileID: 3132490229952364089, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
       propertyPath: m_Pivot.x
@@ -147,5 +155,6 @@ PrefabInstance:
       propertyPath: _upgradeSO
       value: 
       objectReference: {fileID: 11400000, guid: 07252c9ff4c04f64d83d3f426fb1f6a0, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2275068908619149775, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e7c8324aaf53ec42a2802167051166c, type: 3}

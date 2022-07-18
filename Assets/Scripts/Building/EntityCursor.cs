@@ -27,7 +27,6 @@ public class EntityCursor : MonoBehaviour
     public void SetRotation(Vector3 rotation)
     {
         transform.eulerAngles = rotation;
-        _cursor.sprite = _buildingSystem.SelectedObject.BuildingParams.sprites[_buildingSystem.RotationIndex];
     }
 
     public void SetColor(int index) => _cursor.color = _colors[index];
