@@ -11,32 +11,18 @@ public class Enemy : Actor
     [Header("Parameters")]
     [SerializeField] internal EnemySO enemyParams;
 
-    [Header("Extra references")]
-    [SerializeField] private GameObject _legs;
-    [SerializeField] private Sprite _escapingBody;
-
     [Header("Base References")]
     [SerializeField] internal AIPath aIPath;
-    [SerializeField] internal AIDestinationSetter aIDestinationSetter;
+    internal AIDestinationSetter aIDestinationSetter;
     private EntityScanner _entityScanner;
-    private SpriteRenderer _bodyRenderer;
+    private SpriteRenderer _spriteRenderer;
 
-    private Transform DestractionTarget { get => destractionTarget.transform; }
-    internal Transform DestinationTarget
-    {
-        get
-        {
-            return aIDestinationSetter.target;
-        }
-
-        set
-        {
-            aIDestinationSetter.target = value;
-        }
-    }
+    [Header("AI Targets")]
     internal EntityHealth destractionTarget;
+    internal Transform DestinationTarget { get => aIDestinationSetter.target; set => aIDestinationSetter.target = value; }
 
-    [SerializeField] internal Hostage hostageStatement;
+    [Header("Extra references")]
+    [SerializeField] private Sprite _escapingBody;
     [SerializeField] internal GameObject deadBody;
 
     internal delegate void EnemyHandler();
@@ -45,19 +31,19 @@ public class Enemy : Actor
     protected void Start()
     {
         _entityScanner = new EntityScanner(enemyParams.radius, enemyParams.targetMask, transform);
+        _spriteRenderer = body.GetComponentInChildren<SpriteRenderer>();
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
-        _bodyRenderer = body.GetComponentInChildren<SpriteRenderer>();
+
         GameManager.Instance.OnGridChange += SetDestractionTarget;
         GameManager.Instance.battleManager.OnRest += Escape;
     }
 
     private void Update()
     {
-        if (DestinationTarget == null || destractionTarget == null)
-            return;
+        Debug.DrawLine(transform.position, BaseController.instance.transform.position);
 
-        _legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(DestinationTarget));
-        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destractionTarget.transform));
+        if (DestinationTarget != null || destractionTarget != null)
+            transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(destractionTarget.transform));
 
         if (TargetInRadius())
             Attack();
@@ -74,17 +60,35 @@ public class Enemy : Actor
     {
         if (!gameObject.activeSelf)
             return;
-        StartCoroutine(DieCoroutine());
-        GetComponent<EntityHealth>().onDieEvent += DropScore;
+
+        Instantiate(deadBody, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+        Destroy(gameObject);
+
+        DropScore();
+        GameManager.Instance.OnGridChange -= SetDestractionTarget;
+        GameManager.Instance.battleManager.OnRest -= Escape;
+        GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Remove(transform);
     }
 
     private bool TryRaycastToBase()
     {
-        RaycastHit2D raycast = Physics2D.Raycast
-        (transform.position, BaseController.instance.transform.position - transform.position, 40, enemyParams.targetMask);
+        RaycastHit2D raycast =
+        Physics2D.Raycast(transform.position, BaseController.instance.transform.position, 40, enemyParams.targetMask);
+
         if (raycast.collider == BaseController.instance)
             return true;
         else return false;
+    }
+
+    public IEnumerator Freeze(float freezeTime)
+    {
+        aIPath.canMove = false;
+        _spriteRenderer.color = Color.blue;
+
+        yield return new WaitForSeconds(freezeTime);
+
+        aIPath.canMove = true;
+        _spriteRenderer.color = Color.white;
     }
 
     internal virtual void Escape()
@@ -92,18 +96,9 @@ public class Enemy : Actor
         DestinationTarget = GameManager.Instance.battleManager.enemySpawner.escapePoint;
         destractionTarget = null;
 
-        SetEscapeDestination();
-        _bodyRenderer.sprite = _escapingBody;
-
+        _spriteRenderer.sprite = _escapingBody;
         aIPath.maxSpeed = enemyParams.escapeSpeed;
         Invoke("Die", 9);
-    }
-
-    private void SetEscapeDestination()
-    {
-        Transform escapePoint = GameManager.Instance.battleManager.enemySpawner.escapePoint;
-        body.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(escapePoint));
-        _legs.transform.rotation = Quaternion.Euler(0, 0, CalculateRotation(escapePoint));
     }
 
     private void DropScore()
@@ -120,20 +115,6 @@ public class Enemy : Actor
             return false;
         else
             return true;
-    }
-
-    private IEnumerator DieCoroutine()
-    {
-        GameObject deadObj =
-        Instantiate(deadBody, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
-        GameManager.Instance.battleManager.OnRest -= Escape;
-        GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Remove(transform);
-        Destroy(gameObject);
-
-        GameManager.Instance.OnGridChange -= SetDestractionTarget;
-        GameManager.Instance.battleManager.OnRest -= Escape;
-
-        yield return null;
     }
 
     private void OnDrawGizmos()

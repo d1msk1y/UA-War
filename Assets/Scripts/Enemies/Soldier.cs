@@ -11,6 +11,7 @@ public class Soldier : Enemy
         base.Start();
         gun.OnShootEvent += GetRaycastHit;
         gun.targetMask = enemyParams.targetMask;
+        Debug.Log(BaseController.instance.transform);
         DestinationTarget = BaseController.instance.transform;
 
         Attack = Shoot;

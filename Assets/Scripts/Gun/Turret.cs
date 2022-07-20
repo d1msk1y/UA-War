@@ -15,12 +15,12 @@ public class Turret : ActionEntity
         _enemySpawner = GameManager.Instance.battleManager.enemySpawner;
     }
 
-    internal override void Action() => _gun.Shoot(closestEnemy.transform.localPosition);
+    public override void Action() => _gun.Shoot(closestEntity.transform.localPosition);
 
     internal override void OnReachZoneEnter()
     {
         Action();
-        CalculateRotation(closestEnemy.transform.localPosition);
+        CalculateRotation(closestEntity.transform.localPosition);
     }
 
     private void CalculateRotation(Vector3 aimPos)

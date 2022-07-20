@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Base Upgrade
   m_EditorClassIdentifier: 
   upgradeStages:
-  - 300
-  - 400
-  - 500
   - 600
   - 700
+  - 800
+  - 900
+  - 1000
   price: 1000
   priceMultiplier: 1.2

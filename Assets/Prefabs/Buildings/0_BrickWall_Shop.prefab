@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4073521058905361588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1092615331959761174, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.51413774
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615331959761175, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 667c4fbc387cdc34ea83ed29a27b2c07, type: 3}
+    - target: {fileID: 1092615332364380132, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_Name
+      value: 0_BrickWall_Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615332364380133, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333076791468, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_text
+      value: Brick Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256182, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 213.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256182, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 37.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256183, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_text
+      value: Provides reliable protection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256183, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_fontSize
+      value: 29.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256183, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_margin.w
+      value: -36.412384
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092615333520256183, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 29.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484465788856169761, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
+      propertyPath: _entity
+      value: 
+      objectReference: {fileID: 5767610803623961695, guid: 37d511e3f68bcde47ab2b477fcc0484f, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}

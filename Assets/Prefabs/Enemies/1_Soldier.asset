@@ -17,5 +17,5 @@ MonoBehaviour:
   radius: 11
   targetMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
   escapeSpeed: 6

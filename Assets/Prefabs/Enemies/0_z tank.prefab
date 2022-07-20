@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 3918493106754735582}
   - component: {fileID: 3918493106754735570}
   - component: {fileID: 3918493106754735583}
+  - component: {fileID: 7643826593840975719}
   m_Layer: 6
   m_Name: 0_z tank
   m_TagString: Untagged
@@ -274,6 +275,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
+  _detonationSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   detonatedBody: {fileID: 8673769090712691663, guid: 11655cfd42985bb4d8250f61ba450cc9, type: 3}
   explosionFXs:
   - {fileID: 198572881580852744, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
@@ -299,11 +307,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _maxHealth: 300
+  _maxHealth: 600
   hitParticle: {fileID: 19800002, guid: e9391f622091e1449bdef4ef15af4948, type: 3}
   onDie:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7643826593840975719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918493106754735580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae42b497b9dabe43bdc5fb84d66dbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionRadius: 0
+  _vulnerable:
+    serializedVersion: 2
+    m_Bits: 0
+  _startDamage: 0
 --- !u!1 &3918493107341137449
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,9 +462,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3918493106519059469}
   _buildingParams: {fileID: 11400000, guid: d000dbfd871c3624f88cd55a1518838c, type: 2}
   _entityHealth: {fileID: 729514181}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &729514181
 MonoBehaviour:
   m_ObjectHideFlags: 0

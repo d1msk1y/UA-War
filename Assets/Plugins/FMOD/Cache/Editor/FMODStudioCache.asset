@@ -81,6 +81,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 816
+--- !u!114 &-6497486018952179841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Explosions/sfx_mine
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Explosions/sfx_mine
+  Guid:
+    Data1: 1136052202
+    Data2: 1328608294
+    Data3: 1245697154
+    Data4: -1850651827
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1300
 --- !u!114 &-6176663810405274363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +135,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2456300353719887211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Explosions/sfx_freeze
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Explosions/sfx_freeze
+  Guid:
+    Data1: 503766255
+    Data2: 1212579621
+    Data3: -1392326259
+    Data4: 1486169929
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1876
 --- !u!114 &-1296087991346904308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +190,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200696
+--- !u!114 &-1076300190140114616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Buildings/Mine/sfix_mine_set
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Buildings/Mine/sfix_mine_set
+  Guid:
+    Data1: -1979510617
+    Data2: 1307186953
+    Data3: -1322255994
+    Data4: -226714919
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120
 --- !u!114 &-208529183176806106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +259,7 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 637935193068552950
+  lastModified: 637938632208817278
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -216,12 +297,17 @@ MonoBehaviour:
   - {fileID: 3058745247144334728}
   - {fileID: 4118943335282142856}
   - {fileID: -7338869695486239376}
+  - {fileID: 7206483448031847736}
+  - {fileID: -6497486018952179841}
+  - {fileID: -1076300190140114616}
+  - {fileID: 2353301169736573364}
+  - {fileID: -2456300353719887211}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3018008737921570043}
   StringsBanks:
   - {fileID: 437594721609799496}
-  cacheTime: 637935193068552950
+  cacheTime: 637938632208817278
   cacheVersion: 131591
 --- !u!114 &437594721609799496
 MonoBehaviour:
@@ -238,10 +324,10 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637935193068253744
+  lastModified: 637938632208438270
   FileSizes:
   - Name: 
-    Value: 1720
+    Value: 1956
   Exists: 1
 --- !u!114 &999887796268757926
 MonoBehaviour:
@@ -297,6 +383,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1600
+--- !u!114 &2353301169736573364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Buildings/Mine/sfix_mine_triggered
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Buildings/Mine/sfix_mine_triggered
+  Guid:
+    Data1: 1644820937
+    Data2: 1074853911
+    Data3: -1673442687
+    Data4: 1216526262
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1200
 --- !u!114 &2620663378634733306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +479,7 @@ MonoBehaviour:
   Path: Assets/Sounds/FMOD/FMODbanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637935193068233796
+  lastModified: 637938632208378435
   FileSizes: []
   Exists: 1
 --- !u!114 &3058745247144334728
@@ -558,6 +671,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1470
+--- !u!114 &7206483448031847736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Explosions/sfx_vehicle
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Explosions/sfx_vehicle
+  Guid:
+    Data1: -483429164
+    Data2: 1123306218
+    Data3: 1888321160
+    Data4: -148684820
+  Banks:
+  - {fileID: 3018008737921570043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1350
 --- !u!114 &7330455048983757856
 MonoBehaviour:
   m_ObjectHideFlags: 0

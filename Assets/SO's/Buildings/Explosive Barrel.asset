@@ -42,8 +42,8 @@ MonoBehaviour:
   heightLimit: 10
   revievementTime: 5
   health: 10
-  price: 1000
-  attackRadius: 5
+  price: 1500
+  ActionRadius: 5
   vulnerable:
     serializedVersion: 2
     m_Bits: 448

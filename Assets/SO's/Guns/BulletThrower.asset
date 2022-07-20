@@ -35,7 +35,7 @@ MonoBehaviour:
       Data4: -1791741110
     Path: event:/SFX/Weapons/Reload
   damage: 9
-  ammos: 20
+  ammos: 30
   reloadingTime: 3
   shootingRatio: 0.15
   recoilForce: 0

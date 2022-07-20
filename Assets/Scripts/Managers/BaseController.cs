@@ -21,6 +21,7 @@ public class BaseController : MonoBehaviour
     {
         gun.targetMask = targetMask;
         entityHealth = GetComponent<EntityHealth>();
+        entityHealth.onDieEvent += Die;
     }
 
     private void Update()
@@ -59,6 +60,8 @@ public class BaseController : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90;
         character.body.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+
+    private void Die() => Destroy(gameObject);
 
     private float BodyAiming(float angle)
     {

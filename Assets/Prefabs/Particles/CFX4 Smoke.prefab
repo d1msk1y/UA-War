@@ -845,12 +845,12 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - serializedVersion: 2
-      time: 0.05
+      time: 0.01
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 12
-        minScalar: 8
+        scalar: 30
+        minScalar: 10
         maxCurve:
           serializedVersion: 2
           m_Curve:

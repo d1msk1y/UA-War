@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe99b1837a9605c449d91038242e4340, type: 3}
+  m_Name: Brick wall
+  m_EditorClassIdentifier: 
+  buildSFX:
+    Guid:
+      Data1: 639851594
+      Data2: 1279621532
+      Data3: -267558762
+      Data4: -242855933
+    Path: event:/SFX/Buildings/sfx_build_default
+  destroySFX:
+    Guid:
+      Data1: -549298112
+      Data2: 1179949325
+      Data3: -1258611793
+      Data4: -1203226964
+    Path: event:/SFX/Buildings/sfx_destroy_metal
+  hitSFX:
+    Guid:
+      Data1: -2107852668
+      Data2: 1149029396
+      Data3: 267735694
+      Data4: -151369815
+    Path: event:/SFX/Weapons/Impact/sfx_metal
+  sprites:
+  - {fileID: 21300000, guid: 667c4fbc387cdc34ea83ed29a27b2c07, type: 3}
+  - {fileID: 21300000, guid: 667c4fbc387cdc34ea83ed29a27b2c07, type: 3}
+  angles: 000000005a000000
+  destroyedSprite: {fileID: 0}
+  buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  revivementCanvas: {fileID: 3822570251327219008, guid: 6c18d13d072359447b64e3537d6782fc, type: 3}
+  heightLimit: 0
+  revievementTime: 0
+  health: 600
+  price: 1000

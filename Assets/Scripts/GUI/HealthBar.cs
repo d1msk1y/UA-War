@@ -16,8 +16,8 @@ public class HealthBar : MonoBehaviour
     private void UpdateBar()
     {
         _fillImage.fillAmount = _entityHealth.Health / _entityHealth.MaxHealth;
-        Debug.Log("Max health =" + _entityHealth.MaxHealth);
-        Debug.Log("Health =" + _entityHealth.Health);
-        Debug.Log("Health / MaxHealth = " + _entityHealth.Health / _entityHealth.MaxHealth);
+        // Debug.Log("Max health =" + _entityHealth.MaxHealth);
+        // Debug.Log("Health =" + _entityHealth.Health);
+        // Debug.Log("Health / MaxHealth = " + _entityHealth.Health / _entityHealth.MaxHealth);
     }
 }

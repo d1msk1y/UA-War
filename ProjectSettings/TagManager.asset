@@ -45,14 +45,14 @@ TagManager:
   - name: BG
     uniqueID: 211367175
     locked: 0
+  - name: Shadow
+    uniqueID: 1362099909
+    locked: 0
   - name: Machine
     uniqueID: 371876703
     locked: 0
   - name: Actor
     uniqueID: 3990162489
-    locked: 0
-  - name: Protection
-    uniqueID: 3717479271
     locked: 0
   - name: Character
     uniqueID: 656211611
@@ -62,6 +62,9 @@ TagManager:
     locked: 0
   - name: Environment
     uniqueID: 2196138565
+    locked: 0
+  - name: Protection
+    uniqueID: 3717479271
     locked: 0
   - name: VFX
     uniqueID: 1706402315

@@ -21,16 +21,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092615331959761174, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615331959761174, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092615331959761175, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c77216f0a0b4634db84db92d7cc00db, type: 3}
+      objectReference: {fileID: 21300000, guid: 77dcc7baad9d02745b40fa9799e73738, type: 3}
     - target: {fileID: 1092615332364380132, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: m_Name
       value: Explosive barrel_Shop
@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 5484465788856169761, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
       propertyPath: _entity
       value: 
-      objectReference: {fileID: 1590685127096024433, guid: a58c8be8554ccc74098db1e5f09bd79c, type: 3}
+      objectReference: {fileID: 2067095618, guid: a58c8be8554ccc74098db1e5f09bd79c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97d5fc77d81f495499cd2a685879fd88, type: 3}
 --- !u!114 &2439022630406880480 stripped

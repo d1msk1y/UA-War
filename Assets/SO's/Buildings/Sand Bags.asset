@@ -42,4 +42,4 @@ MonoBehaviour:
   heightLimit: 0
   revievementTime: 5
   health: 100
-  price: 100
+  price: 500

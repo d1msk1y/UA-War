@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 using Pathfinding;
 
 [RequireComponent(typeof(AIPath))]
@@ -19,6 +20,9 @@ abstract public class Transport : MonoBehaviour
     [Header("Transport parameters")]
     [SerializeField] internal float _speed;
 
+    [Header("SFX")]
+    [SerializeField] private EventReference _detonationSfx;
+
     [Header("VFX")]
     public GameObject detonatedBody;
     public ParticleSystem[] explosionFXs;
@@ -34,6 +38,7 @@ abstract public class Transport : MonoBehaviour
         aIPath = GetComponent<AIPath>();
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
         entityHealth = GetComponent<EntityHealth>();
+        explosive = GetComponent<Explosive>();
         SetDestination(BaseController.instance.transform);
         entityHealth.onDieEvent += Detonate;
 
@@ -66,10 +71,11 @@ abstract public class Transport : MonoBehaviour
 
     internal virtual void Detonate()
     {
-        Instantiate(detonatedBody, transform.position, Quaternion.Euler(transform.eulerAngles));
-        explosive.Explode();
+        Instantiate(detonatedBody, transform.position, Quaternion.Euler(transform.eulerAngles * -1));
+        explosive.Detonate();
+        GameManager.Instance.soundManager.PlaySoundEvent(_detonationSfx);
         entityHealth.CreateParticle(explosionFXs[Random.Range(0, explosionFXs.Length)]);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         GameManager.Instance.ScanAStar();
         GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Remove(transform);
     }

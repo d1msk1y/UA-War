@@ -23,7 +23,7 @@ public class EntityHealth : MonoBehaviour
         }
     }
 
-    public UnityEvent onDie;
+    [SerializeField] private UnityEvent onDie;
 
     public delegate void EntityHealthHandler();
     public event EntityHealthHandler onDamageEvent;
@@ -38,10 +38,6 @@ public class EntityHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (damage < 0)
-        {
-            Debug.LogWarning("Received damage < 0");
-        }
         Health -= damage;
         onDamageEvent?.Invoke();
         IsEntityAlive();
@@ -54,7 +50,6 @@ public class EntityHealth : MonoBehaviour
             onDie?.Invoke();
             onDieEvent?.Invoke();
             GameManager.Instance.ScanAStar();
-            Destroy(gameObject);
             return false;
         }
         else

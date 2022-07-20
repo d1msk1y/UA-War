@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public BattleManager battleManager;
     public ShopManager shopManager;
+    public SortLayerSetter sortLayerSetter;
     public UiManager uiManager;
     public AudioManager soundManager;
     public ScoreSystem scoreSystem;
