@@ -34,7 +34,7 @@ MonoBehaviour:
       Data4: -151369815
     Path: event:/SFX/Weapons/Impact/sfx_metal
   sprites:
-  - {fileID: 21300000, guid: 1c77216f0a0b4634db84db92d7cc00db, type: 3}
+  - {fileID: 21300000, guid: e2bd081538a2c05449b08797e6ecad27, type: 3}
   angles: 00000000
   destroyedSprite: {fileID: 0}
   buildFX: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}

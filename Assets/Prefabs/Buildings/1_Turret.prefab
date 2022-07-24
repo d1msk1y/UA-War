@@ -81,7 +81,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 8920590667529429023}
   - component: {fileID: 8920590667529429019}
   - component: {fileID: 6643805606288329368}
+  - component: {fileID: 4051123127572153965}
   m_Layer: 8
   m_Name: 1_Turret
   m_TagString: Untagged
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,9 +237,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8920590667529428998}
   _buildingParams: {fileID: 11400000, guid: 26b5fdbcbe2f38f429b6adcfbdf6d094, type: 2}
   _entityHealth: {fileID: 8920590667529429023}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 704
 --- !u!114 &8920590667529429020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +298,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -417,3 +415,43 @@ PolygonCollider2D:
       - {x: -0.15160689, y: 1.2991512}
       - {x: -0.20785189, y: -1.4127376}
       - {x: 0.838076, y: -1.4338784}
+--- !u!114 &4051123127572153965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7797699589797061310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 000000000735990cc5fe2f515f632a16390cd5ed9bfe1c2751a9561a456ae682673b94dd0ba2b565157eaaf2
+  m_ShapePath:
+  - {x: -0.04399665, y: -1.0495149, z: 0}
+  - {x: 0.0606702, y: -1.2318645, z: 0}
+  - {x: 0.015060904, y: -1.8886386, z: 0}
+  - {x: 0.15188882, y: -1.9433699, z: 0}
+  - {x: 0.2431075, y: -1.9068824, z: 0}
+  - {x: 0.28871673, y: -1.1953771, z: 0}
+  - {x: 0.35875002, y: -1.0495152, z: 0}
+  - {x: 0.27091187, y: 1.8986171, z: 0}
+  - {x: -0.022037117, y: 1.913257, z: 0}
+  - {x: -0.030548422, y: -0.19197235, z: 0}
+  - {x: -0.29508242, y: -0.14636302, z: 0}
+  - {x: -0.5687383, y: -0.08250998, z: 0}
+  - {x: -0.7694192, y: 0.06343978, z: 0}
+  - {x: -0.82415044, y: 0.20938957, z: 0}
+  - {x: -1.0339532, y: 0.045196097, z: 0}
+  - {x: -0.586982, y: -0.39265326, z: 0}
+  - {x: -0.21298566, y: -0.52035934, z: 0}
+  - {x: -0.030548422, y: -0.4565063, z: 0}
+  m_ShapePathHash: 2070891774
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 48682

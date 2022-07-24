@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class UpgradeSystem : MonoBehaviour
 {
+
     public void UpgradeBase(UpgradeButton upgradeButton)
-    => BaseController.instance.GetComponent<EntityHealth>().MaxHealth = (int)upgradeButton.UpgradeValue;
+    => BaseController.instance.entityHealth.MaxHealth = (int)upgradeButton.UpgradeValue;
+
+    public void UpgradeShop(UpgradeButton upgradeButton)
+    => GameManager.Instance.scoreSystem.moneyMultiplier = (int)upgradeButton.UpgradeValue;
 
     public void UpgradeGun(UpgradeButton upgradeButton)
     => BaseController.instance.gun.damageMultiplier = upgradeButton.UpgradeValue;

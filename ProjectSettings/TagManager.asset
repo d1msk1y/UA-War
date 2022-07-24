@@ -39,11 +39,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BG
     uniqueID: 211367175
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Shadow
     uniqueID: 1362099909

@@ -19,27 +19,13 @@ public class ActionEntity : Entity
         _entityScanner = new EntityScanner(BuildingParams.ActionRadius, _targetMask, transform);
     }
 
-    public virtual void Action()
-    {
-
-    }
-
-    internal virtual void OnReachZoneEnter()
-    {
-
-    }
-
-    internal virtual void OnTriggerEnter2D(Collider2D other)
-    {
-        GameManager.Instance.soundManager.PlaySoundEvent(BuildingParams.sfx);
-    }
+    internal virtual void OnReachZoneEnter() { /*While in radius*/ }
+    internal virtual void OnTriggerEnter2D(Collider2D other) => AudioManager.Instance.PlaySoundEvent(BuildingParams.sfx);
 
     internal virtual void Update()
     {
-        if (!TryGetClosestEnemy())
-            return;
-
-        if (Vector3.Distance(closestEntity.transform.localPosition, transform.position) > BuildingParams.ActionRadius)
+        if (Vector3.Distance(closestEntity.transform.localPosition, transform.position) > BuildingParams.ActionRadius
+        || !TryGetClosestEnemy())
             return;
 
         OnReachZoneEnter();
@@ -49,9 +35,7 @@ public class ActionEntity : Entity
     {
         closestEntity = _entityScanner.GetClosestEntity(_entityScanner.GetEntitiesInRadius());
         if (GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Count > 0 && closestEntity != null)
-        {
             return true;
-        }
         else return false;
     }
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7181880659614079018
+--- !u!1 &3514856311393944357
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5010883562973232440}
-  - component: {fileID: 548991108988271248}
+  - component: {fileID: 8799445264363656118}
+  - component: {fileID: 4041897190814039064}
   m_Layer: 0
-  m_Name: sand bags shadow
+  m_Name: Brick wall shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5010883562973232440
+--- !u!4 &8799445264363656118
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7181880659614079018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.065, y: -0.21, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 3514856311393944357}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.449, z: 0}
+  m_LocalScale: {x: 0.3078156, y: 0.30085748, z: 0.30085748}
   m_Children: []
   m_Father: {fileID: 11643576533603058}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &548991108988271248
+--- !u!212 &4041897190814039064
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7181880659614079018}
+  m_GameObject: {fileID: 3514856311393944357}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,12 +71,12 @@ SpriteRenderer:
   m_SortingLayerID: 1362099909
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 39988274c77ae004e951ae0c68e876e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1adf6fff800cf01449d147c5f39af6c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.18, y: 1.36}
+  m_Size: {x: 19.2, y: 19.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1922351932858652710}
   - component: {fileID: 7003903647365575855}
   - component: {fileID: 762409019505290045}
+  - component: {fileID: 4390653297252562881}
   m_Layer: 8
   m_Name: 1_sand bags
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Transform:
   m_LocalPosition: {x: -5.04, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5010883562973232440}
+  - {fileID: 8799445264363656118}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,7 +137,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -242,3 +243,52 @@ PolygonCollider2D:
       - {x: -1.0440333, y: -0.30038342}
       - {x: -1.0259413, y: 0.37408027}
       - {x: 0.99091774, y: 0.39613292}
+--- !u!114 &4390653297252562881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719393980617144878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000000735990cc5fe2f515f632a16390cd5ed9bfe1c2751a9561a456ae682673b94dd0ba2b565157eaaf2
+  m_ShapePath:
+  - {x: -1.0583835, y: -0.35029268, z: 0}
+  - {x: -0.42475843, y: -0.36945868, z: 0}
+  - {x: -0.3624611, y: -0.3496368, z: 0}
+  - {x: -0.3029952, y: -0.38078547, z: 0}
+  - {x: 0.2576828, y: -0.38078547, z: 0}
+  - {x: 0.328475, y: -0.34963673, z: 0}
+  - {x: 0.37378263, y: -0.37512207, z: 0}
+  - {x: 1.0285535, y: -0.36568558, z: 0}
+  - {x: 1.0272331, y: -0.13995853, z: 0}
+  - {x: 1.030725, y: -0.024729967, z: 0}
+  - {x: 1.030725, y: 0.055580825, z: 0}
+  - {x: 1.030725, y: 0.093990326, z: 0}
+  - {x: 1.0412006, y: 0.24762839, z: 0}
+  - {x: 1.0272331, y: 0.31397212, z: 0}
+  - {x: 0.9901438, y: 0.41495433, z: 0}
+  - {x: 0.6735363, y: 0.39209414, z: 0}
+  - {x: 0.24999237, y: 0.43418545, z: 0}
+  - {x: -0.28930235, y: 0.42892402, z: 0}
+  - {x: -0.35770035, y: 0.384202, z: 0}
+  - {x: -1.0470567, y: 0.387766, z: 0}
+  - {x: -1.083776, y: 0.2789738, z: 0}
+  - {x: -1.0811453, y: 0.19479118, z: 0}
+  - {x: -1.1127138, y: 0.160592, z: 0}
+  - {x: -1.0969296, y: 0.0106417835, z: 0}
+  - {x: -1.1074524, y: -0.17876905, z: 0}
+  - {x: -1.0864067, y: -0.22349104, z: 0}
+  - {x: -1.083776, y: -0.32082713, z: 0}
+  m_ShapePathHash: 2144014559
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 98086

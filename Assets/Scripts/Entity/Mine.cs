@@ -15,8 +15,6 @@ public class Mine : ActionEntity
         _detonator = GetComponent<Detonator>();
     }
 
-    public override void Action() => StartCoroutine(Detonate());
-
     private IEnumerator Detonate()
     {
         yield return new WaitForSeconds(_explosionDelay);
@@ -27,6 +25,6 @@ public class Mine : ActionEntity
     internal override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
-        Action();
+        StartCoroutine(Detonate());
     }
 }

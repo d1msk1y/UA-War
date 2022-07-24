@@ -41,6 +41,7 @@ abstract public class Transport : MonoBehaviour
         explosive = GetComponent<Explosive>();
         SetDestination(BaseController.instance.transform);
         entityHealth.onDieEvent += Detonate;
+        GameManager.Instance.battleManager.OnRest += Escape;
 
         aIPath.maxSpeed = _speed;
         StartMove();

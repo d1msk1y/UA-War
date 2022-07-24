@@ -49,13 +49,6 @@ public class Enemy : Actor
             Attack();
     }
 
-    internal void SetDestractionTarget()
-    {
-        if (!TryRaycastToBase())
-            destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
-        else destractionTarget = BaseController.instance.entityHealth;
-    }
-
     public void Die()
     {
         if (!gameObject.activeSelf)
@@ -70,16 +63,6 @@ public class Enemy : Actor
         GameManager.Instance.battleManager.enemySpawner.currentEnemiesInAction.Remove(transform);
     }
 
-    private bool TryRaycastToBase()
-    {
-        RaycastHit2D raycast =
-        Physics2D.Raycast(transform.position, BaseController.instance.transform.position, 40, enemyParams.targetMask);
-
-        if (raycast.collider == BaseController.instance)
-            return true;
-        else return false;
-    }
-
     public IEnumerator Freeze(float freezeTime)
     {
         aIPath.canMove = false;
@@ -91,14 +74,31 @@ public class Enemy : Actor
         _spriteRenderer.color = Color.white;
     }
 
+    internal void SetDestractionTarget()
+    {
+        if (!TryRaycastToBase())
+            destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
+        else destractionTarget = BaseController.instance.entityHealth;
+    }
+
     internal virtual void Escape()
     {
         DestinationTarget = GameManager.Instance.battleManager.enemySpawner.escapePoint;
-        destractionTarget = null;
+        destractionTarget = _entityScanner.GetClosestEntity(_entityScanner.GetAllEntities());
 
         _spriteRenderer.sprite = _escapingBody;
         aIPath.maxSpeed = enemyParams.escapeSpeed;
         Invoke("Die", 9);
+    }
+
+    private bool TryRaycastToBase()
+    {
+        RaycastHit2D raycast =
+        Physics2D.Raycast(transform.position, BaseController.instance.transform.position, 40, enemyParams.targetMask);
+
+        if (raycast.collider == BaseController.instance)
+            return true;
+        else return false;
     }
 
     private void DropScore()

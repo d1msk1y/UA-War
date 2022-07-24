@@ -6,7 +6,10 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [Header("Components")]
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    public SpriteRenderer SpriteRenderer { get => _spriteRenderer; set => _spriteRenderer = value; }
+
+    [SerializeField] internal EntityHealth _entityHealth;
     private PolygonCollider2D _polygonCollider;
 
     [SerializeField] private EntitySO _buildingParams;
@@ -16,8 +19,6 @@ public class Entity : MonoBehaviour
         set => _buildingParams = value;
     }
 
-    [SerializeField] internal EntityHealth _entityHealth;
-
     internal virtual void OnEnable()
     {
         SetEntity();
@@ -26,40 +27,31 @@ public class Entity : MonoBehaviour
 
     private void ScanAStar() => GameManager.Instance.ScanAStar();
 
+    public void SetEntity()
+    {
+        _entityHealth.onDieEvent += ScanAStar;
+        _entityHealth.onDieEvent += DestroyEntity;
+        _entityHealth.onDamageEvent += TakeDamage;
+        GameManager.Instance.ShakeScreen(15);
+        GameManager.Instance.ScanAStar();
+        _entityHealth.MaxHealth = BuildingParams.health;
+        AudioManager.Instance.PlaySoundEvent(_buildingParams.buildSFX);
+        Instantiate(BuildingParams.buildFX, transform.position, Quaternion.identity);
+        GameManager.Instance.sortLayerSetter.entities.Add(SpriteRenderer);
+        SetExtraHealth(GameManager.Instance.buildingSystem.extraHealthPercent);
+    }
+
     public void SetExtraHealth(float percent)
     {
         float extraHealth = _entityHealth.MaxHealth * percent;
         _entityHealth.MaxHealth += (int)extraHealth;
     }
 
-    private void CheckRotation()
+    internal virtual void DestroyEntity()
     {
-        for (int i = 0; i < BuildingParams.angles.Length; i++)
-        {
-            if (transform.rotation.z == BuildingParams.angles[i])
-            {
-                if (i >= BuildingParams.sprites.Length)
-                    i = BuildingParams.sprites.Rank;
-                spriteRenderer.sprite = BuildingParams.sprites[i];
-            }
-        }
-    }
-
-    public void SetEntity()
-    {
-        GameManager.Instance.ShakeScreen(15);
-        AudioManager.Instance.PlaySoundEvent(_buildingParams.buildSFX);
-
-        Instantiate(BuildingParams.buildFX, transform.position, Quaternion.identity);
-        _entityHealth.onDieEvent += ScanAStar;
-        _entityHealth.onDieEvent += DestroyEntity;
-        _entityHealth.onDamageEvent += TakeDamage;
-        GameManager.Instance.sortLayerSetter.entities.Add(spriteRenderer);
-        GameManager.Instance.ScanAStar();
-        CheckRotation();
-
-        _entityHealth.MaxHealth = BuildingParams.health;
-        SetExtraHealth(GameManager.Instance.buildingSystem.extraHealthPercent);
+        GameManager.Instance.soundManager.PlaySoundEvent(BuildingParams.destroySFX);
+        GameManager.Instance.sortLayerSetter.entities.Remove(SpriteRenderer);
+        Destroy(gameObject);
     }
 
     private void RevieveEntity()
@@ -69,11 +61,4 @@ public class Entity : MonoBehaviour
     }
 
     private void TakeDamage() => GameManager.Instance.soundManager.PlaySoundEvent(BuildingParams.hitSFX);
-
-    internal virtual void DestroyEntity()
-    {
-        GameManager.Instance.soundManager.PlaySoundEvent(BuildingParams.destroySFX);
-        GameManager.Instance.sortLayerSetter.entities.Remove(spriteRenderer);
-        Destroy(gameObject);
-    }
 }

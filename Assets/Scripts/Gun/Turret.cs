@@ -15,11 +15,9 @@ public class Turret : ActionEntity
         _enemySpawner = GameManager.Instance.battleManager.enemySpawner;
     }
 
-    public override void Action() => _gun.Shoot(closestEntity.transform.localPosition);
-
     internal override void OnReachZoneEnter()
     {
-        Action();
+        _gun.Shoot(closestEntity.transform.localPosition);
         CalculateRotation(closestEntity.transform.localPosition);
     }
 
@@ -27,6 +25,6 @@ public class Turret : ActionEntity
     {
         Vector3 aimDir = aimPos - transform.position;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 }

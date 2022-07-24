@@ -8,8 +8,9 @@ public class BattleManager : MonoBehaviour
     public EnemySpawner enemySpawner;
 
     [Header("Rounds")]
+    public int roundTime;
+    public float roundTimer;
     [SerializeField] private int _currentRound;
-    [SerializeField] private int _roundTime;
     [SerializeField] private bool _isRest = true;
 
     public bool IsRest
@@ -32,7 +33,7 @@ public class BattleManager : MonoBehaviour
         _currentRound++;
         GameManager.Instance.uiManager.SetNewGUIText(GameManager.Instance.uiManager._headerTxt,
          new Vector2(0, 5), "WAVE " + _currentRound);
-        StartCoroutine(StartTimer(_roundTime, StopRound));
+        StartCoroutine(StartTimer(roundTime, StopRound));
     }
 
     private void StopRound()
@@ -46,11 +47,11 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator StartTimer(float time, BattleHandler function)
     {
-        float timer = 0;
-        while (timer < time)
+        roundTimer = 0;
+        while (roundTimer < time)
         {
-            timer += 1 * Time.deltaTime;
-            if (timer >= time)
+            roundTimer += 1 * Time.deltaTime;
+            if (roundTimer >= time)
             {
                 function();
             }

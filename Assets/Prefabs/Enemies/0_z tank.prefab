@@ -81,7 +81,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   height: 1
   canMove: 0
   maxSpeed: 0
-  gravity: {x: NaN, y: NaN, z: NaN}
+  gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -286,14 +286,6 @@ MonoBehaviour:
   explosionFXs:
   - {fileID: 198572881580852744, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
   - {fileID: 198194127032045410, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
-  _damage: 50
-  _shootRatio: 1
-  _shootDistance: 12
-  _turret: {fileID: 3918493107822784442}
-  _body: {fileID: 3918493107341137449}
-  _firepos: {fileID: 3918493106508054226}
-  _bulletPrefab: {fileID: 0}
-  _target: {fileID: 0}
 --- !u!114 &3918493106754735583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,11 +316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae42b497b9dabe43bdc5fb84d66dbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 0
+  damageRadius: 5
   _vulnerable:
     serializedVersion: 2
-    m_Bits: 0
-  _startDamage: 0
+    m_Bits: 192
+  _damage: 100
 --- !u!1 &3918493107341137449
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +371,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -494,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunConfig: {fileID: 11400000, guid: 8714a41fde0d85145949b39edc954fee, type: 2}
   firePos: {fileID: 3918493106508054226}
-  extraAmmosPercent: 0
+  extraAmmosPercent: 1
   damageMultiplier: 1
   targetMask:
     serializedVersion: 2
@@ -530,7 +522,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -549,7 +541,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 441887057
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}

@@ -43,7 +43,7 @@ MonoBehaviour:
   revievementTime: 5
   health: 50
   price: 500
-  attackRadius: 12
+  ActionRadius: 9.98
   vulnerable:
     serializedVersion: 2
     m_Bits: 192
